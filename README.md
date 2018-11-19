@@ -115,19 +115,19 @@ Prenez le temps de valider chaque étape avec votre mentor afin de vous assurer 
 * Un lien vers la dernière analyse SensioLabsInsight (ou vers le projet public sur la plateforme).
 
 ## Ressources
-Thèmes Bootstrap gratuits : startbootstrap.com
+Thèmes Bootstrap gratuits : [startbootstrap.com](startbootstrap.com)
 
-Moteur de templating Twig : twig.sensiolabs.org
+Moteur de templating Twig : [twig.sensiolabs.org](twig.sensiolabs.org)
 
-Qu’est-ce qu’une pull request : help.github.com/articles/about-pull-requests
+Qu’est-ce qu’une pull request : [help.github.com/articles/about-pull-requests](help.github.com/articles/about-pull-requests)
 
-Créer une pull request : help.github.com/articles/creating-a-pull-request
+Créer une pull request : [help.github.com/articles/creating-a-pull-request](help.github.com/articles/creating-a-pull-request)
 
-Comment travailler avec le gestionnaire de paquet PHP Composer : getcomposer.org
+Comment travailler avec le gestionnaire de paquet PHP Composer : [getcomposer.org](getcomposer.org)
 
-SensioLabsInsight : https://insight.sensiolabs.com 
+SensioLabsInsight : [https://insight.sensiolabs.com ](https://insight.sensiolabs.com)
 
-PSR 1 et 2 : http://www.php-fig.org/psr/ 
+PSR 1 et 2 : [http://www.php-fig.org/psr/ ](http://www.php-fig.org/psr/)
 
 ## Compétences à valider
 * Estimer une tâche et tenir les délais
