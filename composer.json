@@ -1,0 +1,17 @@
+{
+    "name": "romain/blog-php",
+    "description": "Projet 5",
+    "authors": [
+        {
+            "name": "RomainDW",
+            "email": "romain.ollier34@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "controllers/",
+            "Models\\": "models/"
+        }
+    }
+}
