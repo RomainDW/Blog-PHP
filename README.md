@@ -1,6 +1,16 @@
 # Blog PHP
 Projet 5 de la formation Développeur PHP / Symfony par Openclassrooms
 
+## Légende des commits
+* :art: Modifications CSS, stylisation, design
+* :wrench: Corrections
+* :heavy_plus_sign: Ajout
+* :heavy_minus_sign: Suppression
+* :arrow_up: Amélioration
+* :arrow_down: Rétrogradation
+* :iphone: Responsive
+* :memo: Modification de texte
+
 ![Image](https://user.oc-static.com/upload/2016/11/17/1479381549985_shutterstock_385167373.jpg)
 
 ## Contexte
