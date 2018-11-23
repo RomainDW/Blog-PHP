@@ -2,21 +2,12 @@
 
 namespace Controllers;
 
-use Models\Blog;
 
-class IndexController
+class IndexController extends Controller
 {
-
-    protected $blogModel;
-
-    public function __construct()
-    {
-        $this->blogModel = new Blog;
-    }
-
     public function index() {
 
-
+        echo $this->twig->render('index/home.html.twig');
     }
 
 }
