@@ -18,7 +18,10 @@ class Controller
         $loader = new Twig_Loader_Filesystem('./views/');
         $this->twig = new Twig_Environment($loader, array(
             'cache' => false,
+            'debug' => true,
         ));
+        $this->twig->addExtension(new \Twig_Extension_Debug());
+        $this->twig->addGlobal('_get', $_GET);
 
         // Blog model
         $this->blogModel = new Blog;
