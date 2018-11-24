@@ -1,0 +1,20 @@
+@mixin body-font() {
+  font-family: 'Lato';
+}
+
+@mixin heading-font() {
+  font-weight: 700;
+  font-family: 'Montserrat';
+}
+
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+@mixin modifier($modifier) {
+  &--#{modifier} {
+    @content;
+  }
+}
