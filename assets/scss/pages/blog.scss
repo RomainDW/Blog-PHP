@@ -1,3 +1,7 @@
 #blog-page {
-  padding-top: calc(6rem + 72px);
+  padding-top:72px;
+
+  @media (min-width: 992px) {
+    padding-top: calc(6rem + 72px);
+  }
 }

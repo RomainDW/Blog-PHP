@@ -315,7 +315,12 @@ a:focus, a:hover, a:active {
 /* Pages
 ================================== */
 #blog-page {
-  padding-top: calc(6rem + 72px);
+  padding-top: 72px;
+}
+@media (min-width: 992px) {
+  #blog-page {
+    padding-top: calc(6rem + 72px);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
