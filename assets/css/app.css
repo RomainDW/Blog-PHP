@@ -312,4 +312,10 @@ a:focus, a:hover, a:active {
   color: #EF9A9A !important;
 }
 
+/* Pages
+================================== */
+#blog-page {
+  padding-top: calc(6rem + 72px);
+}
+
 /*# sourceMappingURL=app.css.map */
