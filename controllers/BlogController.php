@@ -7,6 +7,10 @@ class BlogController extends Controller
 {
     public function index() {
 
-        echo $this->twig->render('blog/blog.html.twig');
+        $posts = $this->model->getAll('posts');
+
+        echo $this->twig->render('blog/blog.html.twig', [
+            'posts' => $posts
+        ]);
     }
 }
