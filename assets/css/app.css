@@ -312,6 +312,10 @@ a:focus, a:hover, a:active {
   color: #EF9A9A !important;
 }
 
+.card {
+  border: solid 2px #5C6BC0;
+}
+
 /* Pages
 ================================== */
 #blog-page {
