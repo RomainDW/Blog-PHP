@@ -9,7 +9,7 @@ class BlogController extends Controller
 
         $posts = $this->model->getAll('posts');
 
-        echo $this->twig->render('blog/blog.html.twig', [
+        echo $this->twig->render('front/blog/blog.html.twig', [
             'posts' => $posts
         ]);
     }

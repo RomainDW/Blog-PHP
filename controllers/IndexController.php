@@ -7,7 +7,7 @@ class IndexController extends Controller
 {
     public function index() {
 
-        echo $this->twig->render('index/home.html.twig');
+        echo $this->twig->render('front/index/home.html.twig');
     }
 
 }
