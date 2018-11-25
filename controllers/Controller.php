@@ -4,12 +4,12 @@ namespace Controllers;
 
 use \Twig_Loader_Filesystem;
 use \Twig_Environment;
-use Models\Blog;
+use Models\Model;
 
 class Controller
 {
     protected $twig;
-    protected $blogModel;
+    protected $model;
 
     function __construct()
     {
@@ -18,9 +18,12 @@ class Controller
         $loader = new Twig_Loader_Filesystem('./views/');
         $this->twig = new Twig_Environment($loader, array(
             'cache' => false,
+            'debug' => true,
         ));
+        $this->twig->addExtension(new \Twig_Extension_Debug());
+        $this->twig->addGlobal('_get', $_GET);
 
         // Blog model
-        $this->blogModel = new Blog;
+        $this->model = new Model;
     }
 }

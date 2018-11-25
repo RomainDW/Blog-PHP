@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="assets/css/app.css">
 {% endblock %}
 
+{% block header %}{{ include('components/header.html.twig') }}{% endblock %}
+
 {# Main content #}
 {% block main %}
 
@@ -89,4 +91,10 @@
 
 {% endblock %}
 
-{% block js %}<script src="assets/js/home.js"></script>{% endblock %}
+{% block js %}
+    <script src="assets/js/home.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="assets/js/vendor/jqBootstrapValidation.min.js"></script>
+    <script src="assets/js/contact_me.js"></script>
+{% endblock %}

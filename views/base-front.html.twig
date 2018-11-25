@@ -21,7 +21,7 @@
 </head>
 <body id="page-top">
     {% block nav %}{{ include('components/nav.html.twig') }}{% endblock %}
-    {% block header %}{{ include('components/header.html.twig') }}{% endblock %}
+    {% block header %}{% endblock %}
     {% block main %}{% endblock %}
     {% block footer %}{{ include('components/footer.html.twig') }}{% endblock %}
 
@@ -33,11 +33,8 @@
     <!-- Plugin JavaScript -->
     <script src="assets/js/vendor/jquery.easing.min.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="assets/js/vendor/jqBootstrapValidation.min.js"></script>
-    <script src="assets/js/contact_me.js"></script>
-
     <!-- Custom scripts  -->
+    <script src="assets/js/nav.js"></script>
     {% block js %}{% endblock %}
 </body>
 </html>
