@@ -10,6 +10,7 @@ Projet 5 de la formation Développeur PHP / Symfony par Openclassrooms
 * :arrow_down: Rétrogradation
 * :iphone: Responsive
 * :memo: Modification de texte
+* :pencil2: Correction orthographique
 
 ![Image](https://user.oc-static.com/upload/2016/11/17/1479381549985_shutterstock_385167373.jpg)
 
