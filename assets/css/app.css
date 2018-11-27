@@ -301,13 +301,6 @@ a:focus, a:hover, a:active {
   border-color: #1a252f;
 }
 
-.form-control {
-  color: #fff !important;
-}
-.form-control:focus {
-  background: none;
-}
-
 .text-danger {
   color: #EF9A9A !important;
 }
@@ -325,6 +318,13 @@ a:focus, a:hover, a:active {
   #blog-page {
     padding-top: calc(6rem + 72px);
   }
+}
+
+#contactForm .form-control {
+  color: #fff !important;
+}
+#contactForm .form-control:focus {
+  background: none;
 }
 
 /*# sourceMappingURL=app.css.map */
