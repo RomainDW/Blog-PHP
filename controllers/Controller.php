@@ -26,4 +26,9 @@ class Controller
         // Blog model
         $this->model = new Model;
     }
+
+    function redirect404() {
+        header('HTTP/1.0 404 Not Found');
+        exit;
+    }
 }
