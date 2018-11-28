@@ -98,7 +98,7 @@ class BlogController extends Controller
                             $allowedExtensions = array('jpg', 'jpeg', 'gif', 'png');
 
                             if (in_array($imageExtension, $allowedExtensions)) {
-                                if (file_exists('uploads' . $post['image'])){
+                                if (file_exists('uploads/' . $post['image'])){
                                     unlink('uploads/' . $post['image']);
                                 }
                                 move_uploaded_file($_FILES['image']['tmp_name'],  'uploads/' . basename($_FILES['image']['name']));
