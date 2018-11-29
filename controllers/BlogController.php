@@ -48,6 +48,8 @@ class BlogController extends Controller
                     if (in_array($imageExtension, $allowedExtensions)) {
                         move_uploaded_file($_FILES['image']['tmp_name'],  'uploads/' . basename($_FILES['image']['name']));
                     }
+                } else {
+                    $message['error'] = 'l\'image est trop lourde';
                 }
 
                 $image = basename($_FILES['image']['name']);
@@ -80,7 +82,10 @@ class BlogController extends Controller
 
             if ($post) {
 
-                $message = '';
+                $message = [
+                    'success'   => null,
+                    'error'     => null
+                ];
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -103,12 +108,14 @@ class BlogController extends Controller
                                 }
                                 move_uploaded_file($_FILES['image']['tmp_name'],  'uploads/' . basename($_FILES['image']['name']));
                             }
+                            $image = basename($_FILES['image']['name']);
+                        } else {
+                            $message['error'] = 'L\'image est trop lourde';
+                            $image = $post['image'];
                         }
 
-                        $image = basename($_FILES['image']['name']);
-
                     } else {
-                        $image = null;
+                        $image = $post['image'];
                     }
 
                     $data = [
@@ -121,7 +128,7 @@ class BlogController extends Controller
                     ];
 
                     if ($this->blogModel->updatePost($data)) {
-                        $message = 'L\'article a bien été modifié !';
+                        $message['success'] = 'L\'article a bien été modifié !';
                     }
 
                     $post = $this->blogModel->getPostById($_GET['id']);
