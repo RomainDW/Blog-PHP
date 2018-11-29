@@ -11,7 +11,13 @@ class Blog extends Model
             INSERT INTO posts (title, subtitle, content, date_add, image, active) 
             VALUES (:title, :subtitle, :content, NOW(), :image, :active)');
 
-        return $req->execute($data);
+        $req->bindValue(':title', $data['title'], \PDO::PARAM_STR);
+        $req->bindValue(':subtitle', $data['subtitle'], \PDO::PARAM_STR);
+        $req->bindValue(':content', $data['content'], \PDO::PARAM_STR);
+        $req->bindValue(':image', $data['image'], \PDO::PARAM_STR);
+        $req->bindValue(':active', $data['active'], \PDO::PARAM_BOOL);
+
+        return $req->execute();
     }
 
     public function getPostById($id) {
