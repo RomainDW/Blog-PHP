@@ -5,11 +5,17 @@
 {% endblock %}
 
 {% block main %}
-
     <main class="container" id="blog-page">
-        <pre>
-            {{ dump(message) }}
-        </pre>
+        {% if message.success %}
+            <div class="alert alert-success" role="alert">
+                {{ message.success }}
+            </div>
+        {% endif %}
+        {% if message.error %}
+            <div class="alert alert-danger" role="alert">
+                {{ message.error }}
+            </div>
+        {% endif %}
         <form method="post" action="/?c=blog&t=update&id={{ post.id }}" enctype="multipart/form-data">
 
             <div class="form-group">
@@ -34,10 +40,5 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        {% if message.success %}
-            <div class="alert alert-success" role="alert">
-                {{ message.success }}
-            </div>
-        {% endif %}
     </main>
 {% endblock %}
