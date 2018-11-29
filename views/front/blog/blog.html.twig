@@ -23,6 +23,7 @@
                     {% if posts != null %}
 
                     {% for post in posts %}
+                    {% if post.active %}
                     <!-- Blog Post -->
                     <div class="card mb-4">
                         <img class="card-img-top" src="uploads/{{ post.image }}" alt="Image de l'article">
@@ -33,12 +34,13 @@
                         </div>
                         <div class="card-footer text-muted">
                             {% if post.date_update != null %}
-                            Modifié le {{ post.date_update }}
+                            Modifié le {{ post.date_update|date("d / m / Y") }}
                             {% else %}
                             Posté le {{ post.date_add|date("d / m / Y") }}
                             {% endif %}
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
 
                     <!-- Pagination -->
