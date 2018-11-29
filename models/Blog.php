@@ -27,7 +27,7 @@ class Blog extends Model
     }
 
     public function updatePost($data) {
-        $req = $this->db->prepare('UPDATE posts SET title = :title, subtitle = :subtitle, content = :content, image = :image, active = :active WHERE id = :id LIMIT 1');
+        $req = $this->db->prepare('UPDATE posts SET title = :title, subtitle = :subtitle, content = :content, image = :image, active = :active, date_update = NOW() WHERE id = :id LIMIT 1');
         $req->bindValue(':id', $data['id'], \PDO::PARAM_INT);
         $req->bindValue(':title', $data['title'], \PDO::PARAM_STR);
         $req->bindValue(':subtitle', $data['subtitle'], \PDO::PARAM_STR);
