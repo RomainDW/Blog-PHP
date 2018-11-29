@@ -16,9 +16,11 @@
                 <!-- Blog Entries Column -->
                 <div class="col-md-8">
 
-                    <h1 class="my-4">Page Heading
-                        <small>Secondary Text</small>
+                    <h1 class="my-4">Bienvenue
+                        <small>sur mon blog</small>
                     </h1>
+
+                    {% if posts != null %}
 
                     {% for post in posts %}
                     <!-- Blog Post -->
@@ -48,6 +50,13 @@
                             <a class="page-link" href="#">Newer &rarr;</a>
                         </li>
                     </ul>
+
+                    {% else %}
+                    <!-- No blog posts -->
+                    <h2>Aucun article n'a été posté pour le moment</h2>
+                    {% endif %}
+
+
 
                 </div>
 
