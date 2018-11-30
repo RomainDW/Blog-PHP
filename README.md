@@ -1,4 +1,4 @@
-# Blog PHP
+# PHP blog with MVC architecture
 This website was created for an OpenClassrooms PHP / Symfony Developer Training Project
 
 ## Legend of commits
