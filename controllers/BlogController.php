@@ -75,7 +75,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function update() {
+    public function edit() {
         if (isset($_GET['id'])) {
 
             $post = $this->blogModel->getPostById($_GET['id']);
@@ -135,7 +135,7 @@ class BlogController extends Controller
 
                 }
 
-                echo $this->twig->render('admin/blog/update.html.twig', [
+                echo $this->twig->render('admin/blog/edit.html.twig', [
                     'post'      => $post,
                     'message'   => $message
                 ]);
