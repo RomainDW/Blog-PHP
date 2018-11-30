@@ -5,7 +5,7 @@ Ajout d'un article
 {% endblock %}
 
 {% block main %}
-    <main class="container" id="post-create">
+    <main class="container form-grid">
         {% if message.success %}
             <div class="alert alert-success" role="alert">
                 {{ message.success }}
@@ -46,7 +46,7 @@ Ajout d'un article
 
         </form>
 
-        <div class="d-flex justify-content-end submit-form-create">
+        <div class="d-flex justify-content-end submit-form">
             <button type="submit" form="form-create" class="btn btn-primary">Submit</button>
         </div>
 
