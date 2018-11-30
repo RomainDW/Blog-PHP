@@ -146,4 +146,19 @@ class BlogController extends Controller
             $this->redirect404();
         }
     }
+
+    public function show() {
+
+        $post = $this->blogModel->getPostById($_GET['id']);
+
+        if (isset($_GET['id']) && $post) {
+
+            echo $this->twig->render('front/blog/post.html.twig', [
+                'post' => $post
+            ]);
+
+        } else {
+            $this->redirect404();
+        }
+    }
 }
