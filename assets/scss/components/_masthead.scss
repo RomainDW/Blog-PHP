@@ -1,7 +1,15 @@
 header.masthead {
   padding-top: calc(6rem + 72px);
   padding-bottom: 6rem;
-  height: 100vh;
+  display: flex;
+  align-items: center;
+  @media all and (min-width: $screen-md-min) {
+    height: 100vh;
+  }
+  @media all and (max-width: $screen-xs-max) {
+    padding-top: calc(3rem + 72px);
+    padding-bottom: 3rem;
+  }
   h1 {
     font-size: 3rem;
     line-height: 3rem;
