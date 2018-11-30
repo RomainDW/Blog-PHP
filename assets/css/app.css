@@ -67,7 +67,13 @@ section {
   width: 3.25rem;
   height: 3.25rem;
   font-size: 1.25rem;
-  line-height: 2rem; }
+  line-height: 2rem;
+  position: relative; }
+  .btn-social i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 .scroll-to-top {
   z-index: 1042;
@@ -262,31 +268,31 @@ a {
   #contactForm .form-control:focus {
     background: none; }
 
-#post-create {
+.form-grid {
   padding-top: 156px; }
-  #post-create form {
+  .form-grid form {
     display: grid;
     grid-template-areas: "left  right";
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr; }
     @media all and (max-width: 991px) {
-      #post-create form {
+      .form-grid form {
         grid-template-areas: "left" "right";
         grid-template-rows: auto;
         grid-template-columns: 1fr; } }
-    #post-create form .left {
+    .form-grid form .left {
       grid-area: left;
       padding: 0 0.5rem; }
-    #post-create form .right {
+    .form-grid form .right {
       grid-area: right;
       padding: 0 0.5rem; }
-      #post-create form .right .form-group {
+      .form-grid form .right .form-group {
         height: 100%;
         flex-direction: column; }
-        #post-create form .right .form-group textarea {
+        .form-grid form .right .form-group textarea {
           height: 100%;
           min-height: 200px; }
-  #post-create .submit-form-create {
+  .form-grid .submit-form {
     margin: 0.5rem; }
 
 /*# sourceMappingURL=app.css.map */

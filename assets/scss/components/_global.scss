@@ -81,6 +81,13 @@ section {
   height: 3.25rem;
   font-size: 1.25rem;
   line-height: 2rem;
+  position: relative;
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 // Scroll to Top Button
