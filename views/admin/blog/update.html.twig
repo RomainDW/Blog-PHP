@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    <main class="container" id="blog-page">
+    <main class="container form-grid">
         {% if message.success %}
             <div class="alert alert-success" role="alert">
                 {{ message.success }}
@@ -16,29 +16,38 @@
                 {{ message.error }}
             </div>
         {% endif %}
-        <form method="post" action="/?c=blog&t=update&id={{ post.id }}" enctype="multipart/form-data">
+        <form method="post" action="/?c=blog&t=update&id={{ post.id }}" enctype="multipart/form-data" id="form-update">
 
-            <div class="form-group">
-                <label for="formGroupExampleInput">Titre</label>
-                <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="Example input" value="{{ post.title }}">
+            <div class="left">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Titre</label>
+                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" value="{{ post.title }}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Chapô</label>
+                    <textarea class="form-control" name="subtitle" id="exampleFormControlTextarea1" rows="2">{{ post.subtitle }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Image (1500x600 recommandé)</label>
+                    <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" value="{{ post.image }}">
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="active" class="form-check-input" id="exampleCheck1" {% if post.active == 1 %}checked="checked"{% endif %} value="1">
+                    <label class="form-check-label" for="exampleCheck1">Mettre en ligne</label>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Chapô</label>
-                <textarea class="form-control" name="subtitle" id="exampleFormControlTextarea1" rows="2">{{ post.subtitle }}</textarea>
+            <div class="right">
+                <div class="form-group d-flex">
+                    <label for="exampleFormControlTextarea1">Contenu</label>
+                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1">{{ post.content }}</textarea>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Contenu</label>
-                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5">{{ post.content }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Image (1500x600 recommandé)</label>
-                <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" value="{{ post.image }}">
-            </div>
-            <div class="form-check">
-                <input type="checkbox" name="active" class="form-check-input" id="exampleCheck1" {% if post.active == 1 %}checked="checked"{% endif %} value="1">
-                <label class="form-check-label" for="exampleCheck1">Mettre en ligne</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
+
+        <div class="d-flex justify-content-end submit-form">
+            <button type="submit" form="form-update" class="btn btn-primary">Submit</button>
+        </div>
+
     </main>
 {% endblock %}
