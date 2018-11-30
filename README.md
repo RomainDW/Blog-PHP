@@ -1,16 +1,16 @@
 # Blog PHP
-Projet 5 de la formation Développeur PHP / Symfony par Openclassrooms
+This website was created for an OpenClassrooms PHP / Symfony Developer Training Project
 
-## Légende des commits
-* :art: Modifications CSS, stylisation, design
-* :wrench: Corrections
-* :heavy_plus_sign: Ajout
-* :heavy_minus_sign: Suppression
-* :arrow_up: Amélioration
-* :arrow_down: Rétrogradation
+## Legend of commits
+* :art: CSS modifications, styling, design
+* :wrench: Fixes
+* :heavy_plus_sign: Add
+* :heavy_minus_sign: Delete
+* :arrow_up: Upgrade
+* :arrow_down: Downgrade
 * :iphone: Responsive
-* :memo: Modification de texte
-* :pencil2: Correction orthographique
+* :memo: Text modification
+* :pencil2: Spellchecking
 
 ## Installation
 * Clone : 
