@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <h2 class="card-title">{{ post.title }}</h2>
                             <p class="card-text">{{ post.subtitle }}</p>
-                            <a href="#" class="btn btn-primary">Voir plus &rarr;</a>
+                            <a href="?c=blog&t=show&id={{ post.id }}" class="btn btn-primary">Voir plus &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
                             {% if post.date_update != null %}
