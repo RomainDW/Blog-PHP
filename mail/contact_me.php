@@ -13,8 +13,8 @@ $message = strip_tags(htmlspecialchars($_POST['message']));
 
 // Create the email and send the message
 $to = "contact@romain-ollier.com";
-$subject = "Website Contact Form:  $name";
-$body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email\n\nPhone: $phone\n\nMessage:\n$message";
+$subject = "Message via formulaire de contact:  $name";
+$body = "Vous avez reçu un nouveau message de votre formulaire de contact de site Web.\n\n"."Voici les détails:\n\nNom: $name\n\nEmail: $email\n\nTel: $phone\n\nMessage:\n$message";
 $header = "From: noreply@romain-ollier.com\n";
 $header .= "Reply-To: $email";
 
