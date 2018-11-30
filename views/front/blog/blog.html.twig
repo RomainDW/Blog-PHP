@@ -16,14 +16,17 @@
                 <!-- Blog Entries Column -->
                 <div class="col-md-8">
 
-                    <h1 class="my-4">Page Heading
-                        <small>Secondary Text</small>
+                    <h1 class="my-4">Bienvenue
+                        <small>sur mon blog</small>
                     </h1>
 
+                    {% if posts != null %}
+
                     {% for post in posts %}
+                    {% if post.active %}
                     <!-- Blog Post -->
                     <div class="card mb-4">
-                        <img class="card-img-top" src="https://picsum.photos/750/300?random" alt="Card image cap">
+                        <img class="card-img-top" src="uploads/{{ post.image }}" alt="Image de l'article">
                         <div class="card-body">
                             <h2 class="card-title">{{ post.title }}</h2>
                             <p class="card-text">{{ post.subtitle }}</p>
@@ -31,12 +34,13 @@
                         </div>
                         <div class="card-footer text-muted">
                             {% if post.date_update != null %}
-                            Modifié le {{ post.date_update }}
+                            Modifié le {{ post.date_update|date("d / m / Y") }}
                             {% else %}
                             Posté le {{ post.date_add|date("d / m / Y") }}
                             {% endif %}
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
 
                     <!-- Pagination -->
@@ -48,6 +52,13 @@
                             <a class="page-link" href="#">Newer &rarr;</a>
                         </li>
                     </ul>
+
+                    {% else %}
+                    <!-- No blog posts -->
+                    <h2>Aucun article n'a été posté pour le moment</h2>
+                    {% endif %}
+
+
 
                 </div>
 

@@ -1,0 +1,6 @@
+#contactForm .form-control {
+  color: #fff !important;
+  &:focus {
+    background: none;
+  }
+}

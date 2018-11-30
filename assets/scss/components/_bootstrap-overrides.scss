@@ -50,17 +50,14 @@ a {
   }
 }
 
-.form-control {
-  color: #fff !important;
-  &:focus {
-    background: none; 
-  }
-}
-
 .text-danger {
   color : #EF9A9A!important;
 }
 
 .card {
-  border: solid 2px #5C6BC0;
+  border: 1px solid rgba(0,0,0,.3);
+}
+
+.form-check {
+  margin-bottom: 1rem;
 }

@@ -1,0 +1,45 @@
+.form-grid {
+
+  padding-top: $navHeight + 50px;
+
+  form {
+    display: grid;
+    grid-template-areas:
+            "left  right";
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+
+    @media all and (max-width:$screen-sm-max) {
+      grid-template-areas:
+              "left"
+              "right";
+      grid-template-rows: auto;
+      grid-template-columns: 1fr;
+    }
+
+    .left {
+      grid-area: left;
+      padding: 0 0.5rem;
+    }
+
+    .right {
+      grid-area: right;
+      padding: 0 0.5rem;
+
+      .form-group {
+        height: 100%;
+        flex-direction: column;
+
+        textarea {
+          height: 100%;
+          min-height: 200px;
+        }
+      }
+    }
+  }
+
+  .submit-form {
+    margin: 0.5rem;
+  }
+
+}
