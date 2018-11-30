@@ -19,5 +19,6 @@ if (class_exists($class, true)) {
         call_user_func([$class, "index"]);
     }
 } else {
-    echo "404 - Error";
+    header('HTTP/1.0 404 Not Found');
+    exit;
 }
