@@ -1,0 +1,42 @@
+<div class="sidebar-menu">
+    <div class="sidebar-header">
+        <div class="logo">
+            <a href="{% if _get.c == "dashboard" %}javascript:void(0){% else %}?c=dashboard{% endif %}"><img src="assets/img/profile_avatar.png" alt="logo"></a>
+        </div>
+    </div>
+    <div class="main-menu">
+        <div class="menu-inner">
+            <nav>
+                <ul class="metismenu" id="menu">
+                    <li {% if _get.c == "dashboard" %}class="active"{% endif %}>
+                        <a href="{% if _get.c == "dashboard" %}javascript:void(0){% else %}?c=dashboard{% endif %}">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li {% if _get.c == "adminBlog" %}class="active"{% endif %}>
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <i class="fa fa-pencil"></i>
+                            <span>
+                                    Articles
+                                </span>
+                        </a>
+                        <ul class="collapse">
+                            <li {% if _get.c == "adminBlog" and _get.t == null %}class="active"{% endif %}>
+                                <a href={% if _get.c == "adminBlog" and _get.t == null %}javascript:void(0){% else %}"?c=adminBlog{% endif %}">Liste</a>
+                            </li>
+                            <li {% if _get.c == "adminBlog" and _get.t == "create" %}class="active"{% endif %}>
+                                <a href="{% if _get.c == "adminBlog" and _get.t == "create" %}javascript:void(0){% else %}?c=adminBlog&t=create{% endif %}">Ajouter</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li {% if _get.c == "comment" %}class="active"{% endif %}>
+                        <a href="{% if _get.c == "comment" %}javascript:void(0){% else %}?c=comment{% endif %}" aria-expanded="true">
+                            <i class="fa fa-commenting"></i>
+                            <span>Commentaires</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
