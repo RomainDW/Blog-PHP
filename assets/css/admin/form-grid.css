@@ -1,0 +1,26 @@
+.form-grid form {
+  display: grid;
+  grid-template-areas: "left  right";
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr; }
+  @media all and (max-width: 991px) {
+    .form-grid form {
+      grid-template-areas: "left" "right";
+      grid-template-rows: auto;
+      grid-template-columns: 1fr; } }
+  .form-grid form .left {
+    grid-area: left;
+    padding: 0 0.5rem; }
+  .form-grid form .right {
+    grid-area: right;
+    padding: 0 0.5rem; }
+    .form-grid form .right .form-group {
+      height: 100%;
+      flex-direction: column; }
+      .form-grid form .right .form-group textarea {
+        height: 100%;
+        min-height: 200px; }
+.form-grid .submit-form {
+  margin: 0.5rem; }
+
+/*# sourceMappingURL=form-grid.css.map */
