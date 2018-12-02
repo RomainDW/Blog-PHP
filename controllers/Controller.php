@@ -31,8 +31,9 @@ class Controller
     }
 
     function redirect404() {
-        header('HTTP/1.0 404 Not Found');
-        exit;
+        header('This is not the page you are looking for', true, 404);
+        include('views/404.html');
+        exit();
     }
 
     function removeImage($image, $path) {
