@@ -7,13 +7,6 @@ use Models\Blog;
 
 class BlogController extends Controller
 {
-    protected $blogModel;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->blogModel = new Blog;
-    }
 
     public function index() {
 
@@ -103,9 +96,9 @@ class BlogController extends Controller
                             $allowedExtensions = array('jpg', 'jpeg', 'gif', 'png');
 
                             if (in_array($imageExtension, $allowedExtensions)) {
-                                if (file_exists('uploads/' . $post['image'])){
-                                    unlink('uploads/' . $post['image']);
-                                }
+
+                                $this->removeImage($post['image'], 'uploads/');
+
                                 move_uploaded_file($_FILES['image']['tmp_name'],  'uploads/' . basename($_FILES['image']['name']));
                             }
                             $image = basename($_FILES['image']['name']);
