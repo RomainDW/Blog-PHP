@@ -263,19 +263,6 @@ a {
 .form-check {
   margin-bottom: 1rem; }
 
-/* Pages
-================================== */
-#blog-page {
-  padding-top: 72px; }
-  @media (min-width: 992px) {
-    #blog-page {
-      padding-top: calc(6rem + 72px); } }
-
-#contactForm .form-control {
-  color: #fff !important; }
-  #contactForm .form-control:focus {
-    background: none; }
-
 .form-grid {
   padding-top: 156px; }
   .form-grid form {
@@ -302,5 +289,21 @@ a {
           min-height: 200px; }
   .form-grid .submit-form {
     margin: 0.5rem; }
+
+/* Pages
+================================== */
+#blog-page {
+  padding-top: 72px; }
+  @media (min-width: 992px) {
+    #blog-page {
+      padding-top: calc(6rem + 72px); } }
+
+#contactForm .form-control {
+  color: #fff !important; }
+  #contactForm .form-control:focus {
+    background: none; }
+
+.delete-form {
+  display: inline-block; }
 
 /*# sourceMappingURL=app.css.map */
