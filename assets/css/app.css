@@ -263,33 +263,6 @@ a {
 .form-check {
   margin-bottom: 1rem; }
 
-.form-grid {
-  padding-top: 156px; }
-  .form-grid form {
-    display: grid;
-    grid-template-areas: "left  right";
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr; }
-    @media all and (max-width: 991px) {
-      .form-grid form {
-        grid-template-areas: "left" "right";
-        grid-template-rows: auto;
-        grid-template-columns: 1fr; } }
-    .form-grid form .left {
-      grid-area: left;
-      padding: 0 0.5rem; }
-    .form-grid form .right {
-      grid-area: right;
-      padding: 0 0.5rem; }
-      .form-grid form .right .form-group {
-        height: 100%;
-        flex-direction: column; }
-        .form-grid form .right .form-group textarea {
-          height: 100%;
-          min-height: 200px; }
-  .form-grid .submit-form {
-    margin: 0.5rem; }
-
 /* Pages
 ================================== */
 #blog-page {
@@ -297,13 +270,12 @@ a {
   @media (min-width: 992px) {
     #blog-page {
       padding-top: calc(6rem + 72px); } }
+  #blog-page .see-more i {
+    margin-left: 0.5rem; }
 
 #contactForm .form-control {
   color: #fff !important; }
   #contactForm .form-control:focus {
     background: none; }
-
-.delete-form {
-  display: inline-block; }
 
 /*# sourceMappingURL=app.css.map */
