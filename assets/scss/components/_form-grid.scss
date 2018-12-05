@@ -1,7 +1,5 @@
 .form-grid {
 
-  padding-top: $navHeight + 50px;
-
   form {
     display: grid;
     grid-template-areas:
@@ -9,7 +7,7 @@
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr;
 
-    @media all and (max-width:$screen-sm-max) {
+    @media all and (max-width: 991px) {
       grid-template-areas:
               "left"
               "right";

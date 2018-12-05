@@ -19,6 +19,7 @@ if (class_exists($class, true)) {
         call_user_func([$class, "index"]);
     }
 } else {
-    header('HTTP/1.0 404 Not Found');
-    exit;
+    header('This is not the page you are looking for', true, 404);
+    include('views/404.html');
+    exit();
 }

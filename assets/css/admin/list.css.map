@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACX,OAAO,EAAE,YAAY;;AAGvB,mDAAoD;EAClD,KAAK,EAAE,IAAI",
+"sources": ["../scss/pages/admin-list-posts.scss"],
+"names": [],
+"file": "list.css"
+}

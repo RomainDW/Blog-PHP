@@ -4,8 +4,12 @@
 Ajout d'un article
 {% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="assets/css/admin/form-grid.css">
+{% endblock %}
+
 {% block main %}
-    <main class="container form-grid">
+    <main class="form-grid">
         {% if message.success %}
             <div class="alert alert-success" role="alert">
                 {{ message.success }}
@@ -16,7 +20,7 @@ Ajout d'un article
                 {{ message.error }}
             </div>
         {% endif %}
-        <form method="post" action="?c=blog&t=create" enctype="multipart/form-data" id="form-create">
+        <form method="post" action="?c=adminBlog&t=create" enctype="multipart/form-data" id="form-create">
 
             <div class="left">
                 <div class="form-group">
@@ -47,7 +51,7 @@ Ajout d'un article
         </form>
 
         <div class="d-flex justify-content-end submit-form">
-            <button type="submit" form="form-create" class="btn btn-primary">Submit</button>
+            <button type="submit" form="form-create" class="btn btn-success">Envoyer</button>
         </div>
 
 
