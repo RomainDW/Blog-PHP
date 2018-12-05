@@ -41,7 +41,7 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.date_add|date("d/m/Y") }}</td>
                     <td>
-                        <a href="?c=adminBlog&t=show&id={{ post.id }}" role="button" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                        <a href="?c=blog&t=post&id={{ post.id }}" role="button" class="btn btn-success"><i class="fa fa-eye"></i></a>
                         <a href="?c=adminBlog&t=edit&id={{ post.id }}" role="button" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                         <form method="post" action="?c=adminBlog&t=deletePost" class="delete-form">
                             <input type="hidden" name="postId" value="{{ post.id }}">

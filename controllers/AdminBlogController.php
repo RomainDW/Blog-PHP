@@ -144,19 +144,6 @@ class AdminBlogController extends Controller
         }
     }
 
-    public function show() {
-
-        if (isset($_GET['id']) && $post = $this->blogModel->getPostById($_GET['id'])) {
-
-            echo $this->twig->render('front/blog/post.html.twig', [
-                'post' => $post
-            ]);
-
-        } else {
-            $this->redirect404();
-        }
-    }
-
     public function deletePost() {
         // TODO: remove comments
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
