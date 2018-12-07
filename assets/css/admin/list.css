@@ -4,4 +4,12 @@
 div.dataTables_wrapper div.dataTables_length select {
   width: 76px; }
 
+.active-yes {
+  font-size: 2rem;
+  color: #28a745; }
+
+.active-no {
+  font-size: 2rem;
+  color: #dc3545; }
+
 /*# sourceMappingURL=list.css.map */
