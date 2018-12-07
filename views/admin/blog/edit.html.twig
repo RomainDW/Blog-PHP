@@ -20,7 +20,7 @@
                 {{ message.error }}
             </div>
         {% endif %}
-        <form method="post" action="?c=blog&t=edit&id={{ post.id }}" enctype="multipart/form-data" id="form-update">
+        <form method="post" action="?c=adminBlog&t=edit&id={{ post.id }}" enctype="multipart/form-data" id="form-update">
 
             <div class="left">
                 <div class="form-group">
@@ -43,7 +43,7 @@
             <div class="right">
                 <div class="form-group d-flex">
                     <label for="exampleFormControlTextarea1">Contenu</label>
-                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1">{{ post.content }}</textarea>
+                    <textarea class="form-control article-content" name="content" id="exampleFormControlTextarea1">{{ post.content }}</textarea>
                 </div>
             </div>
 
@@ -54,4 +54,10 @@
         </div>
 
     </main>
+{% endblock %}
+
+{% block js %}
+<!-- TinyMCE -->
+<script src="assets/js/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/js/vendor/tinymce/tinymce_init.js"></script>
 {% endblock %}
