@@ -1,5 +1,5 @@
 .idea/
-vendor/
-assets/.sass-cache/
-assets/source/*
-assets/thumbs/*
+/vendor/
+/assets/.sass-cache/
+/assets/source/*
+/assets/thumbs/*
