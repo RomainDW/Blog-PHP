@@ -19,8 +19,10 @@ class BlogController extends Controller
 
         if (isset($_GET['id']) && $post = $this->blogModel->getPostById($_GET['id'])) {
 
+            $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);
+
             echo $this->twig->render('front/blog/post.html.twig', [
-                'post' => $post
+                'post' => $post,
             ]);
 
         } else {

@@ -30,7 +30,7 @@ class AdminBlogController extends Controller
 
         if (isset($_POST['title']) AND isset($_POST['subtitle']) AND isset($_POST['content']) ) {
 
-            if ($_POST['active'] == null) {
+            if (!isset($_POST['active'])) {
                 $_POST['active'] = 0;
             }
 
@@ -54,10 +54,12 @@ class AdminBlogController extends Controller
                 $image = null;
             }
 
+            $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
+
             $data = [
                 'title'         => $_POST['title'],
                 'subtitle'      => $_POST['subtitle'],
-                'content'       => $_POST['content'],
+                'content'       => $content,
                 'image'         => $image,
                 'active'        => $_POST['active']
             ];
@@ -86,7 +88,7 @@ class AdminBlogController extends Controller
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                    if ($_POST['active'] == null) {
+                    if (!isset($_POST['active'])) {
                         $_POST['active'] = 0;
                     }
 
@@ -115,11 +117,13 @@ class AdminBlogController extends Controller
                         $image = $post['image'];
                     }
 
+                    $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
+
                     $data = [
                         'id'            => $_GET['id'],
                         'title'         => $_POST['title'],
                         'subtitle'      => $_POST['subtitle'],
-                        'content'       => $_POST['content'],
+                        'content'       => $content,
                         'image'         => $image,
                         'active'        => $_POST['active']
                     ];
@@ -131,6 +135,8 @@ class AdminBlogController extends Controller
                     $post = $this->blogModel->getPostById($_GET['id']);
 
                 }
+
+                $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
 
                 echo $this->twig->render('admin/blog/edit.html.twig', [
                     'post'      => $post,

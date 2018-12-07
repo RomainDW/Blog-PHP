@@ -13,7 +13,7 @@ class Blog extends Model
 
         $req->bindValue(':title', $data['title'], \PDO::PARAM_STR);
         $req->bindValue(':subtitle', $data['subtitle'], \PDO::PARAM_STR);
-        $req->bindValue(':content', $data['content'], \PDO::PARAM_STR);
+        $req->bindValue(':content', $data['content'], \PDO::PARAM_LOB);
         $req->bindValue(':image', $data['image'], \PDO::PARAM_STR);
         $req->bindValue(':active', $data['active'], \PDO::PARAM_BOOL);
 
@@ -31,7 +31,7 @@ class Blog extends Model
         $req->bindValue(':id', $data['id'], \PDO::PARAM_INT);
         $req->bindValue(':title', $data['title'], \PDO::PARAM_STR);
         $req->bindValue(':subtitle', $data['subtitle'], \PDO::PARAM_STR);
-        $req->bindValue(':content', $data['content'], \PDO::PARAM_STR);
+        $req->bindValue(':content', $data['content'], \PDO::PARAM_LOB);
         $req->bindValue(':image', $data['image'], \PDO::PARAM_STR);
         $req->bindValue(':active', $data['active'], \PDO::PARAM_BOOL);
         return $req->execute();
