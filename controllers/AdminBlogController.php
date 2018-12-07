@@ -64,42 +64,52 @@ class AdminBlogController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (!isset($_POST['active'])) {
-                $_POST['active'] = 0;
-            }
+            if (!empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content'])) {
 
-            if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0) {
+                if (!isset($_POST['active'])) {
+                    $_POST['active'] = 0;
+                }
 
-
-                if ($_FILES['image']['size'] <= 1000000) {
-
-                    $infoImage = pathinfo($_FILES['image']['name']);
-                    $imageExtension = $infoImage['extension'];
-                    $allowedExtensions = array('jpg', 'jpeg', 'gif', 'png');
+                if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0) {
 
 
-                    if (in_array($imageExtension, $allowedExtensions)) {
+                    if ($_FILES['image']['size'] <= 1000000) {
 
-                        if ($post != null) {
-                            $this->removeImage($post['image'], 'assets/img/uploads/');
+                        $infoImage = pathinfo($_FILES['image']['name']);
+                        $imageExtension = $infoImage['extension'];
+                        $allowedExtensions = array('jpg', 'jpeg', 'gif', 'png');
+
+
+                        if (in_array($imageExtension, $allowedExtensions)) {
+
+                            if ($post != null) {
+                                $this->removeImage($post['image'], 'assets/img/uploads/');
+                            }
+
+                            move_uploaded_file($_FILES['image']['tmp_name'],  'assets/img/uploads/' . basename($_FILES['image']['name']));
+
+                            $image = basename($_FILES['image']['name']);
+                        } else {
+                            $message['error'] = 'Le format de l\'image n\'est pas supporté';
+
+                            if ($post != null) {
+                                $image = $post['image'];
+                            } else {
+                                $image = null;
+                            }
+
                         }
-
-                        move_uploaded_file($_FILES['image']['tmp_name'],  'assets/img/uploads/' . basename($_FILES['image']['name']));
-
-                        $image = basename($_FILES['image']['name']);
                     } else {
-                        $message['error'] = 'Le format de l\'image n\'est pas supporté';
+                        $message['error'] = 'L\'image est trop lourde';
 
                         if ($post != null) {
                             $image = $post['image'];
                         } else {
                             $image = null;
                         }
-
                     }
-                } else {
-                    $message['error'] = 'L\'image est trop lourde';
 
+                } else {
                     if ($post != null) {
                         $image = $post['image'];
                     } else {
@@ -107,45 +117,41 @@ class AdminBlogController extends Controller
                     }
                 }
 
-            } else {
+                $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
+
+                $data = [
+                    'title'         => $_POST['title'],
+                    'subtitle'      => $_POST['subtitle'],
+                    'content'       => $content,
+                    'image'         => $image,
+                    'active'        => $_POST['active']
+                ];
+
                 if ($post != null) {
-                    $image = $post['image'];
+
+                    $postId = $_GET['id'];
+
+                    if ($this->blogModel->updatePost($data, $postId)) {
+                        $message['success'] = 'L\'article a bien été modifié !';
+                    } else {
+                        $message['error'] = 'L\'article n\'a pas pu être modifié.';
+                    }
+
+                    $post = $this->blogModel->getPostById($_GET['id']);
+
+                    $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
+
                 } else {
-                    $image = null;
+
+                    if ($this->blogModel->setPost($data)) {
+                        $message['success'] = 'L\'article a bien été ajouté !';
+                    } else {
+                        $message['error'] = 'L\'article n\'a pas pu être ajouté.';
+                    }
                 }
-            }
-
-            $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
-
-            $data = [
-                'title'         => $_POST['title'],
-                'subtitle'      => $_POST['subtitle'],
-                'content'       => $content,
-                'image'         => $image,
-                'active'        => $_POST['active']
-            ];
-
-            if ($post != null) {
-
-                $postId = $_GET['id'];
-
-                if ($this->blogModel->updatePost($data, $postId)) {
-                    $message['success'] = 'L\'article a bien été modifié !';
-                } else {
-                    $message['error'] = 'L\'article n\'a pas pu être modifié.';
-                }
-
-                $post = $this->blogModel->getPostById($_GET['id']);
-
-                $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
 
             } else {
-
-                if ($this->blogModel->setPost($data)) {
-                    $message['success'] = 'L\'article a bien été ajouté !';
-                } else {
-                    $message['error'] = 'L\'article n\'a pas pu être ajouté.';
-                }
+                $message['error'] = 'Des champs obligatoires n\'ont pas été rempli';
             }
         }
 
