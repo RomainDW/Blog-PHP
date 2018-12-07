@@ -44,7 +44,7 @@ Ajout d'un article
             <div class="right">
                 <div class="form-group d-flex">
                     <label for="exampleFormControlTextarea1">Contenu</label>
-                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1"></textarea>
+                    <textarea class="form-control article-content" name="content" id="exampleFormControlTextarea1"></textarea>
                 </div>
             </div>
 
@@ -56,4 +56,11 @@ Ajout d'un article
 
 
     </main>
+{% endblock %}
+
+
+{% block js %}
+    <!-- TinyMCE -->
+    <script src="assets/js/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/js/vendor/tinymce/tinymce_init.js"></script>
 {% endblock %}
