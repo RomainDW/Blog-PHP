@@ -21,11 +21,11 @@
                                 </span>
                         </a>
                         <ul class="collapse">
-                            <li {% if _get.c == "adminBlog" and _get.t == null %}class="active"{% endif %}>
-                                <a href={% if _get.c == "adminBlog" and _get.t == null %}javascript:void(0){% else %}"?c=adminBlog{% endif %}">Liste</a>
+                            <li {% if _get.c == "adminBlog" and _get.t == null or _get.t == 'deletePost' %}class="active"{% endif %}>
+                                <a href={% if _get.c == "adminBlog" and _get.t == null or _get.t == 'deletePost' %}javascript:void(0){% else %}"?c=adminBlog{% endif %}">Liste</a>
                             </li>
-                            <li {% if _get.c == "adminBlog" and _get.t == "create" %}class="active"{% endif %}>
-                                <a href="{% if _get.c == "adminBlog" and _get.t == "create" %}javascript:void(0){% else %}?c=adminBlog&t=create{% endif %}">Ajouter</a>
+                            <li {% if _get.c == "adminBlog" and _get.t == "edit" and _get.id == null %}class="active"{% endif %}>
+                                <a href="{% if _get.c == "adminBlog" and _get.t == "edit" and _get.id == null %}javascript:void(0){% else %}?c=adminBlog&t=edit{% endif %}">Ajouter</a>
                             </li>
                         </ul>
                     </li>
