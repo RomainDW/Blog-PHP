@@ -26,14 +26,14 @@
             <div class="left">
                 <!--TITLE -->
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Titre</label>
-                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" {% if post != null %}value="{{ post.title }}{% endif %}">
+                    <label for="formGroupExampleInput">Titre *</label>
+                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" {% if post != null %}value="{{ post.title }}{% endif %}" required>
                 </div>
 
                 <!-- SUBTITLE -->
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Chapô</label>
-                    <textarea class="form-control" name="subtitle" id="exampleFormControlTextarea1" rows="2">{% if post != null %}{{ post.subtitle }}{% endif %}</textarea>
+                    <label for="exampleFormControlTextarea1">Chapô *</label>
+                    <textarea class="form-control" name="subtitle" id="exampleFormControlTextarea1" rows="2" required>{% if post != null %}{{ post.subtitle }}{% endif %}</textarea>
                 </div>
 
                 <!-- IMAGE -->
@@ -53,7 +53,7 @@
 
                 <!-- CONTENT -->
                 <div class="form-group d-flex">
-                    <label for="exampleFormControlTextarea1">Contenu</label>
+                    <label for="exampleFormControlTextarea1">Contenu *</label>
                     <textarea class="form-control article-content" name="content" id="exampleFormControlTextarea1">{% if post != null %}{{ post.content }}{%endif %}</textarea>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         </form>
 
         <div class="d-flex justify-content-end submit-form">
-            <button type="submit" form="form-update" class="btn btn-primary" name="{% if post != null %}edit{% else %}add{% endif %}">Envoyer</button>
+            <button type="submit" form="form-update" class="btn btn-primary" name="{% if post != null %}edit{% else %}add{% endif %}" id="submit-btn">Envoyer</button>
         </div>
         <!-- END FORM -->
 
