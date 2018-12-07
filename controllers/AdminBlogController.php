@@ -37,7 +37,8 @@ class AdminBlogController extends Controller
                     $this->index(null, "L'article n'a pas pu être supprimé");
                 }
             } else {
-                $this->redirect404();
+                header('Location: ?c=adminBlog');
+                exit;
             }
         } else {
             header('Location: ?c=adminBlog');
