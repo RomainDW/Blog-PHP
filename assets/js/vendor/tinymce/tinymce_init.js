@@ -16,5 +16,5 @@ tinymce.init({
 
     external_filemanager_path:"/assets/filemanager/",
     filemanager_title:"Responsive Filemanager" ,
-    external_plugins: { "filemanager" : "/assets/filemanager/plugin.min.js"}
+    external_plugins: { "filemanager" : "../../../filemanager/plugin.min.js"}
 });
