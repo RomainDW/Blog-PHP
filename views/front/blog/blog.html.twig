@@ -45,11 +45,18 @@
 
                     <!-- Pagination -->
                     <ul class="pagination justify-content-center mb-4">
-                        <li class="page-item">
-                            <a class="page-link" href="#">&larr; Older</a>
+                        <li class="page-item {% if _get.page == null or _get.page == 1 %}disabled{% endif %}">
+                            <a class="page-link" href="?c=blog&page={{ _get.page - 1 }}">Previous</a>
                         </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Newer &rarr;</a>
+
+                        {% for i in 1..numberOfPages %}
+                            <li class="page-item {% if _get.page == i %}active{% endif %}">
+                                <a class="page-link" href="?c=blog&page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+
+                        <li class="page-item {% if _get.page == numberOfPages %}disabled{% endif %}">
+                            <a class="page-link" href="?c=blog&page={% if _get.page == null %}2{% else %}{{ _get.page + 1 }}{% endif %}">Next</a>
                         </li>
                     </ul>
 
@@ -57,8 +64,6 @@
                     <!-- No blog posts -->
                     <h2>Aucun article n'a été posté pour le moment</h2>
                     {% endif %}
-
-
 
                 </div>
 
