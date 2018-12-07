@@ -7,5 +7,8 @@ final class Config
         DB_HOST = 'localhost',
         DB_NAME = 'blog-php-p5',
         DB_USR = 'root',
-        DB_PWD = '';
+        DB_PWD = '',
+
+        // Posts Per Page
+        PPP = 3;
 }
