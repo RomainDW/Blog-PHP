@@ -37,4 +37,16 @@ class Blog extends Model
         return $req->execute();
     }
 
+    public function getNumberOfPosts() {
+        $req = $this->db->prepare('SELECT COUNT(*) FROM posts');
+        $req->execute();
+        return $req->fetchColumn();
+
+    }
+
+    public function getPostsPagination($this_page_first_result, $results_per_page) {
+        $req = $this->db->prepare('SELECT * FROM posts LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
