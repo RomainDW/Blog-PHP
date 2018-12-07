@@ -6,6 +6,7 @@
             "left  right";
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
 
     @media all and (max-width: 991px) {
       grid-template-areas:
@@ -17,12 +18,10 @@
 
     .left {
       grid-area: left;
-      padding: 0 0.5rem;
     }
 
     .right {
       grid-area: right;
-      padding: 0 0.5rem;
 
       .form-group {
         height: 100%;
