@@ -33,10 +33,12 @@
 
                     <hr>
 
-                    <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
+                    <!-- Image -->
+                    {% if post.image %}
+                        <img class="img-fluid rounded" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
 
-                    <hr>
+                        <hr>
+                    {% endif %}
 
                     <!-- Post Content -->
                     {{ post.content|raw }}
