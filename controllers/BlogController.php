@@ -19,6 +19,10 @@ class BlogController extends Controller
         // determine number of total pages available
         $number_of_pages = ceil($number_of_posts/$results_per_page);
 
+        // Minimum 1 page
+        if ($number_of_pages == 0)
+            $number_of_pages = 1;
+
         // determine which page number visitor is currently on
         if (!isset($_GET['page'])) {
             $page = 1;
