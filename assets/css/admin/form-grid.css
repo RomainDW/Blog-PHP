@@ -2,18 +2,17 @@
   display: grid;
   grid-template-areas: "left  right";
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr; }
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem; }
   @media all and (max-width: 991px) {
     .form-grid form {
       grid-template-areas: "left" "right";
       grid-template-rows: auto;
       grid-template-columns: 1fr; } }
   .form-grid form .left {
-    grid-area: left;
-    padding: 0 0.5rem; }
+    grid-area: left; }
   .form-grid form .right {
-    grid-area: right;
-    padding: 0 0.5rem; }
+    grid-area: right; }
     .form-grid form .right .form-group {
       height: 100%;
       flex-direction: column; }
