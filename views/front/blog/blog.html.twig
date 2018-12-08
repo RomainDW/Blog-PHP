@@ -31,10 +31,14 @@
                                 <!-- Blog Post -->
                                 <div class="card mb-4">
                                     {% if post.image %}
-                                        <img class="card-img-top" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
+                                        <a href="?c=blog&t=post&id={{ post.id }}">
+                                            <img class="card-img-top" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
+                                        </a>
                                     {% endif %}
                                     <div class="card-body">
-                                        <h2 class="card-title">{{ post.title }}</h2>
+                                        <a href="?c=blog&t=post&id={{ post.id }}">
+                                            <h2 class="card-title">{{ post.title }}</h2>
+                                        </a>
                                         <p class="card-text">{{ post.subtitle }}</p>
                                         <a href="?c=blog&t=post&id={{ post.id }}" class="btn btn-primary see-more">Voir plus <i class="fas fa-chevron-right"></i></a>
                                     </div>
