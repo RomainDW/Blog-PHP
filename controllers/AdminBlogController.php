@@ -25,6 +25,9 @@ class AdminBlogController extends Controller
     }
 
     public function deletePost() {
+        if (!$this->isAdmin())
+            header('Location: ?c=login');
+
         // TODO: remove comments
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_POST['postId']) && $post = $this->blogModel->getPostById($_POST['postId'])) {
@@ -52,6 +55,9 @@ class AdminBlogController extends Controller
     }
 
     public function edit() {
+
+        if (!$this->isAdmin())
+            header('Location: ?c=login');
 
         if (isset($_GET['id']) && $this->blogModel->getPostById($_GET['id']) != null) {
             $post = $this->blogModel->getPostById($_GET['id']);
