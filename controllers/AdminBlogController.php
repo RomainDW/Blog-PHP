@@ -7,6 +7,9 @@ class AdminBlogController extends Controller
 {
     public function index($success, $error) {
 
+        if (!$this->isAdmin())
+            header('Location: ?c=login');
+
         $posts = $this->model->getAll('posts');
 
         $message = [
