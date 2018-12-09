@@ -22,8 +22,8 @@ a {
   background-color: #5C6BC0;
   border-color: #5C6BC0; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: #4150a8;
-    border-color: #4150a8; }
+    background-color: #4150a8 !important;
+    border-color: #4150a8 !important; }
 
 .btn-secondary {
   background-color: #2C3E50;
@@ -87,5 +87,8 @@ main {
 .sign-in-icon {
   font-size: 5rem;
   color: #5C6BC0; }
+
+.create-account:focus, .create-account:hover, .create-account:active {
+  color: #ffffff; }
 
 /*# sourceMappingURL=login.css.map */
