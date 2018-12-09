@@ -17,6 +17,10 @@ class Controller
 
     function __construct()
     {
+        //SESSION
+        if (empty($_SESSION))
+            session_start();
+
         $className = substr(get_class($this), 12, -10);
         // Twig Configuration
         $loader = new Twig_Loader_Filesystem('./views/');
@@ -26,15 +30,12 @@ class Controller
         ));
         $this->twig->addExtension(new \Twig_Extension_Debug());
         $this->twig->addGlobal('_get', $_GET);
+        $this->twig->addGlobal('session', $_SESSION);
 
         // Models
         $this->model = new Model;
         $this->blogModel = new Blog;
         $this->usersModel = new Users;
-
-        //SESSION
-        if (empty($_SESSION))
-            session_start();
     }
 
     protected function redirect404() {
