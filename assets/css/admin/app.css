@@ -543,7 +543,7 @@ ul.breadcrumbs {
             transform: none!important;
     top: 130%!important;
     right: 30px!important;
-    left: auto!important;
+    left: 0;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     display: block!important;
