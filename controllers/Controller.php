@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Users;
 use \Twig_Loader_Filesystem;
 use \Twig_Environment;
 use Models\Model;
@@ -12,6 +13,7 @@ class Controller
     protected $twig;
     protected $model;
     protected $blogModel;
+    protected $usersModel;
 
     function __construct()
     {
@@ -28,19 +30,58 @@ class Controller
         // Models
         $this->model = new Model;
         $this->blogModel = new Blog;
+        $this->usersModel = new Users;
+
+        //SESSION
+        if (empty($_SESSION))
+            session_start();
     }
 
-    function redirect404() {
+    protected function redirect404() {
         header('This is not the page you are looking for', true, 404);
         include('views/404.html');
         exit();
     }
 
-    function removeImage($image, $path) {
+    protected function removeImage($image, $path) {
         if ($image != null) {
             if (file_exists($path . $image)){
                 unlink($path . $image);
             }
+        }
+    }
+
+    protected function isAdmin() {
+
+        if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function isUser() {
+
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function isLogged() {
+
+        if ($this->isAdmin()) {
+
+            return true;
+
+        } elseif ($this->isUser()) {
+
+            return true;
+
+        } else {
+
+            return false;
         }
     }
 }
