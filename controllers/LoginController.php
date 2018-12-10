@@ -106,7 +106,7 @@ class LoginController extends Controller
             session_destroy();
         }
 
-        header('Location: ?c=login');
+        header('Location: ?c=index');
 
 
     }
