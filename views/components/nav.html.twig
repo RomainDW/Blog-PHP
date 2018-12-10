@@ -16,6 +16,23 @@
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% if _get.c == "blog" and _get.t == null %}#page-top{% else %}?c=blog{% endif %}">Blog</a>
                 </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    {% if session.user != null or session.admin != null %}
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                           href="?c=login&t=logout"
+                           data-toggle="tooltip"
+                           title="Déconnexion">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+                    {% else %}
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                           href="{% if _get.c == "login" and _get.t == null %}#page-top{% else %}?c=login{% endif %}"
+                           data-toggle="tooltip"
+                           title="Connexion">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>
