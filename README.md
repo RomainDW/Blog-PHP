@@ -19,7 +19,7 @@ git clone https://github.com/RomainDW/Blog-PHP.git
 ```
 * Update composer :
 ``` bash
-composer update
+composer install
 ```
 
 * Create Database
