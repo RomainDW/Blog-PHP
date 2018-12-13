@@ -38,12 +38,14 @@ class Controller
         $this->usersModel = new Users;
     }
 
+    // Redirect to the 404 error page
     protected function redirect404() {
         header('This is not the page you are looking for', true, 404);
         include('views/404.html');
         exit();
     }
 
+    // check if the image exist, then remove it
     protected function removeImage($image, $path) {
         if ($image != null) {
             if (file_exists($path . $image)){
@@ -52,6 +54,7 @@ class Controller
         }
     }
 
+    // check if logged as admin
     protected function isAdmin() {
 
         if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
@@ -61,6 +64,7 @@ class Controller
         }
     }
 
+    // check if logged as simple user
     protected function isUser() {
 
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
@@ -70,6 +74,7 @@ class Controller
         }
     }
 
+    // check if logged (admin or user)
     protected function isLogged() {
 
         if ($this->isAdmin()) {

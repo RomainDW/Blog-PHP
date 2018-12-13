@@ -6,8 +6,12 @@ namespace Controllers;
 
 class LoginController extends Controller
 {
+    /*
+     * Show the login page
+     */
     public function index() {
 
+        // if the user is loged, redirect to "my account"
         // TODO: redirect to "my account"
         if ( $this->isLogged())
             header('Location: ?c=index');
@@ -23,16 +27,19 @@ class LoginController extends Controller
             $password = htmlspecialchars($_POST['password']);
             $userExist = $this->usersModel->getUser($email, $password);
 
+            // check if email & password are empty
             if (empty($email) || empty($password)) {
 
                 $message['error'] = "Tous les champs n'ont pas été remplis";
 
+            // check if the user exist
             } elseif ( !$userExist) {
 
                 $message['error'] = "Identifiant ou mot de passe incorrect !";
 
             } else {
 
+                // if role = 1, run admin session, else, run user session
                 if ($userExist && $userExist['role'] == 1) {
                     $_SESSION['admin'] = $userExist['name'];
                     header('Location: ' . '?c=dashboard');
@@ -49,6 +56,9 @@ class LoginController extends Controller
         ]);
     }
 
+    /*
+     * Show the registration page
+     */
     public function registration() {
 
         $message = [
@@ -64,14 +74,17 @@ class LoginController extends Controller
             $passwordCheck = htmlspecialchars($_POST['passwordCheck']);
             $userExist = $this->usersModel->checkUserByEmail($email);
 
+            // check if fields are empty
             if (empty($email) || empty($name) || empty($password) || empty($passwordCheck)) {
 
                 $message['error'] = "Tous les champs n'ont pas été remplis";
 
+            // check if passwords match
             } elseif ($password != $passwordCheck) {
 
                 $message['error'] = "Les mots de passe ne correspondent pas";
 
+            // check if user exist
             } elseif ($userExist) {
                 $message['error'] = "Cet utilisateur existe déjà";
             } else {
@@ -83,6 +96,7 @@ class LoginController extends Controller
                     'role'      => 0
                 ];
 
+                // create the user then redirect to "my account"
                 if ($this->usersModel->setUser($data)) {
                     //TODO: redirect to "my account"
                     $message['success'] = 'Compte créé';
@@ -98,6 +112,9 @@ class LoginController extends Controller
         ]);
     }
 
+    /*
+     * log out the user then redirect to the home page
+     */
     public function logout() {
 
         if ($this->isLogged()) {

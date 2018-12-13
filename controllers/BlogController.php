@@ -48,8 +48,12 @@ class BlogController extends Controller
         ]);
     }
 
+    /*
+     * Show a blog post
+     */
     public function post() {
 
+        // if the post exist, show the post, else, redirect to a 404 error page
         if (isset($_GET['id']) && $post = $this->blogModel->getPostById($_GET['id'])) {
 
             $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);

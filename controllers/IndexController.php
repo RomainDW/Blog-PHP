@@ -5,11 +5,17 @@ namespace Controllers;
 
 class IndexController extends Controller
 {
+    /*
+     * Show the homepage
+     */
     public function index() {
 
         echo $this->twig->render('front/index/home.html.twig');
     }
 
+    /*
+     * send mail with the contact form
+     */
     public function contact() {
 
         // Check for empty fields

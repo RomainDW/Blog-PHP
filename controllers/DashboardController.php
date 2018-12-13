@@ -6,6 +6,9 @@ namespace Controllers;
 
 class DashboardController extends Controller
 {
+    /*
+     * Show the dashboard
+     */
     public function index() {
         if (!$this->isAdmin())
             header('Location: ?c=login');
