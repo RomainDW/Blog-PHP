@@ -41,6 +41,9 @@
 <div class="copyright py-4 text-center text-white">
     <div class="container">
         <small>Copyright &copy; romain-ollier.com</small>
+        {% if session.admin != null%}
+            | <small><a href="?c=dashboard">Administration</a></small>
+        {% endif %}
     </div>
 </div>
 
