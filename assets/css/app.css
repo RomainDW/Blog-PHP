@@ -263,6 +263,15 @@ a {
 .form-check {
   margin-bottom: 1rem; }
 
+.page-item.active .page-link {
+  background-color: #5C6BC0;
+  border-color: #5C6BC0; }
+
+.page-link {
+  color: #5C6BC0; }
+  .page-link:hover {
+    color: #5C6BC0; }
+
 /* Pages
 ================================== */
 #blog-page {

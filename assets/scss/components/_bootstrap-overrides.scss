@@ -61,3 +61,15 @@ a {
 .form-check {
   margin-bottom: 1rem;
 }
+
+.page-item.active .page-link {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.page-link {
+  color: $primary;
+  &:hover {
+    color: $primary;
+  }
+}

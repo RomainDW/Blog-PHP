@@ -112,7 +112,7 @@
 }
 
 .metismenu li a i {
-    color: #6a56a5;
+    color: #5C6BC0;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -437,7 +437,7 @@
     top: 50%;
     width: 4px;
     height: 36px;
-    background: var(--primary-color);
+    background: #5C6BC0;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
 }
@@ -463,7 +463,7 @@ ul.breadcrumbs {
     display: block;
     font-size: 14px;
     font-weight: 400;
-    color: #7801ff;
+    color: #5C6BC0;
     letter-spacing: 0;
     margin-right: 16px;
     position: relative;
@@ -493,8 +493,7 @@ ul.breadcrumbs {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    background: -webkit-linear-gradient(left, #8914fe 0%, #8063f5 100%);
-    background: linear-gradient(to right, #8914fe 0%, #8063f5 100%);
+    background-color: #5C6BC0;
     padding: 17px 38px;
     position: relative;
 }
@@ -575,7 +574,7 @@ ul.breadcrumbs {
 
 .user-profile .dropdown-menu a:hover {
     background: #f8f9fa;
-    color: #2942fa;
+    color: #5C6BC0;
 }
 
 /*-------------------- END Page Title Area -------------------*/
@@ -622,7 +621,7 @@ ul.breadcrumbs {
 }
 
 .lts-content h2 a:hover {
-    color: #6d65dc;
+    color: #5C6BC0;
 }
 
 .lts-content p {
