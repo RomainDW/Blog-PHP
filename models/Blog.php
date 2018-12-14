@@ -62,7 +62,7 @@ class Blog extends Model
      * Get total number of blog posts
      */
     public function getNumberOfPosts() {
-        $req = $this->db->prepare('SELECT COUNT(*) FROM posts');
+        $req = $this->db->prepare('SELECT COUNT(*) FROM posts WHERE active = 1');
         $req->execute();
         return $req->fetchColumn();
 
