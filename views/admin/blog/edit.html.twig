@@ -26,26 +26,26 @@
             <div class="left">
                 <!--TITLE -->
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Titre *</label>
-                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" {% if post != null %}value="{{ post.title }}{% endif %}" required>
+                    <label for="title">Titre *</label>
+                    <input type="text" class="form-control" name="title" id="title" {% if post != null %}value="{{ post.title }}{% endif %}" required>
                 </div>
 
                 <!-- SUBTITLE -->
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Chapô *</label>
-                    <textarea class="form-control" name="subtitle" id="exampleFormControlTextarea1" rows="2" required>{% if post != null %}{{ post.subtitle }}{% endif %}</textarea>
+                    <label for="subtitle">Chapô *</label>
+                    <textarea class="form-control" name="subtitle" id="subtitle" rows="2" required>{% if post != null %}{{ post.subtitle }}{% endif %}</textarea>
                 </div>
 
                 <!-- IMAGE -->
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Image (1500x600 recommandé)</label>
-                    <input type="file" class="form-control-file" name="image" id="exampleFormControlFile1" {% if post != null %}value="{{ post.image }}{% endif %}">
+                    <label for="image">Image (1500x600 recommandé)</label>
+                    <input type="file" class="form-control-file" name="image" id="image" {% if post != null %}value="{{ post.image }}{% endif %}">
                 </div>
 
                 <!-- PUBLISH -->
                 <div class="form-check">
-                    <input type="checkbox" name="active" class="form-check-input" id="exampleCheck1" {% if post != null and post.active == 1 %}checked="checked"{% endif %} value="1">
-                    <label class="form-check-label" for="exampleCheck1">Mettre en ligne</label>
+                    <input type="checkbox" name="active" class="form-check-input" id="active" {% if post != null and post.active == 1 %}checked="checked"{% endif %} value="1">
+                    <label class="form-check-label" for="active">Mettre en ligne</label>
                 </div>
             </div>
 
@@ -53,8 +53,8 @@
 
                 <!-- CONTENT -->
                 <div class="form-group d-flex">
-                    <label for="exampleFormControlTextarea1">Contenu *</label>
-                    <textarea class="form-control article-content" name="content" id="exampleFormControlTextarea1">{% if post != null %}{{ post.content }}{%endif %}</textarea>
+                    <label for="content">Contenu *</label>
+                    <textarea class="form-control article-content" name="content" id="content">{% if post != null %}{{ post.content }}{%endif %}</textarea>
                 </div>
             </div>
 
