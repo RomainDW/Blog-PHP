@@ -19,12 +19,15 @@ class Controller
     protected $commentsModel;
 
     protected $message;
+    protected $msg;
 
     function __construct()
     {
         //SESSION
-        if (empty($_SESSION))
-            session_start();
+        if (!session_id()) @session_start();
+
+        // Flash messages
+        $this->msg = new \Plasticbrain\FlashMessages\FlashMessages();
 
         $className = substr(get_class($this), 12, -10);
         // Twig Configuration
