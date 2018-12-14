@@ -25,3 +25,10 @@ composer install
 * Create Database
 * Enter your database configuration in `/Engine/Config.php`
 * Import in your database `database.sql`
+
+## Vendor
+* [Twig](https://twig.symfony.com/doc/2.x/tags/if.html)
+* [Font Awesome](https://fontawesome.com/)
+* [TinyMce](https://www.tiny.cloud/)
+* [DataTables](https://datatables.net/) 
+* [jqBootstrapValidation](https://reactiveraven.github.io/jqBootstrapValidation/)
