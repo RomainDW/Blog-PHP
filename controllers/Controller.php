@@ -14,6 +14,7 @@ class Controller
     protected $model;
     protected $blogModel;
     protected $usersModel;
+    protected $message;
 
     function __construct()
     {
@@ -89,5 +90,13 @@ class Controller
 
             return false;
         }
+    }
+
+    protected function setSuccessMessage ($message) {
+        $this->message['success'] = $message;
+    }
+
+    protected function setErrorMessage ($message) {
+        $this->message['error'] = $message;
     }
 }

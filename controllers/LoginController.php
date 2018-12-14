@@ -16,11 +16,6 @@ class LoginController extends Controller
         if ( $this->isLogged())
             header('Location: ?c=index');
 
-        $message = [
-            'success'   => null,
-            'error'     => null
-        ];
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $email = htmlspecialchars($_POST['email']);
@@ -30,12 +25,12 @@ class LoginController extends Controller
             // check if email & password are empty
             if (empty($email) || empty($password)) {
 
-                $message['error'] = "Tous les champs n'ont pas été remplis";
+                $this->setErrorMessage("Tous les champs n'ont pas été remplis");
 
             // check if the user exist
             } elseif ( !$userExist) {
 
-                $message['error'] = "Identifiant ou mot de passe incorrect !";
+                $this->setErrorMessage("Identifiant ou mot de passe incorrect !");
 
             } else {
 
@@ -52,7 +47,7 @@ class LoginController extends Controller
         }
 
         echo $this->twig->render('front/login/index.html.twig', [
-            'message'   => $message
+            'message'   => $this->message
         ]);
     }
 
@@ -60,11 +55,6 @@ class LoginController extends Controller
      * Show the registration page
      */
     public function registration() {
-
-        $message = [
-            'success'   => null,
-            'error'     => null
-        ];
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -77,16 +67,16 @@ class LoginController extends Controller
             // check if fields are empty
             if (empty($email) || empty($name) || empty($password) || empty($passwordCheck)) {
 
-                $message['error'] = "Tous les champs n'ont pas été remplis";
+                $this->setErrorMessage("Tous les champs n'ont pas été remplis");
 
             // check if passwords match
             } elseif ($password != $passwordCheck) {
 
-                $message['error'] = "Les mots de passe ne correspondent pas";
+                $this->setErrorMessage("Les mots de passe ne correspondent pas");
 
             // check if user exist
             } elseif ($userExist) {
-                $message['error'] = "Cet utilisateur existe déjà";
+                $this->setErrorMessage("Cet utilisateur existe déjà");
             } else {
 
                 $data = [
@@ -99,16 +89,16 @@ class LoginController extends Controller
                 // create the user then redirect to "my account"
                 if ($this->usersModel->setUser($data)) {
                     //TODO: redirect to "my account"
-                    $message['success'] = 'Compte créé';
+                    $this->setSuccessMessage("Compte créé");
                 } else {
-                    $message['error'] = "Une erreur s'est produite";
+                    $this->setErrorMessage("Une erreur s'est produite");
                 }
 
             }
         }
 
         echo $this->twig->render('front/login/registration.html.twig', [
-            'message'   => $message
+            'message'   => $this->message
         ]);
     }
 

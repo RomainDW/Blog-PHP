@@ -89,11 +89,6 @@ class AdminBlogController extends Controller
             $post = null;
         }
 
-        $message = [
-            'success'   => null,
-            'error'     => null
-        ];
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // check if the fields are not empty
@@ -129,7 +124,7 @@ class AdminBlogController extends Controller
                             $image = basename($_FILES['image']['name']);
 
                         } else {
-                            $message['error'] = 'Le format de l\'image n\'est pas supporté';
+                            $this->setErrorMessage('Le format de l\'image n\'est pas supporté');
 
                             if ($post != null) {
                                 $image = $post['image'];
@@ -139,7 +134,7 @@ class AdminBlogController extends Controller
 
                         }
                     } else {
-                        $message['error'] = 'L\'image est trop lourde';
+                        $this->setErrorMessage('L\'image est trop lourde');
 
                         if ($post != null) {
                             $image = $post['image'];
@@ -173,9 +168,9 @@ class AdminBlogController extends Controller
                     $postId = $_GET['id'];
 
                     if ($this->blogModel->updatePost($data, $postId)) {
-                        $message['success'] = 'L\'article a bien été modifié !';
+                        $this->setSuccessMessage('L\'article a bien été modifié !');
                     } else {
-                        $message['error'] = 'L\'article n\'a pas pu être modifié.';
+                        $this->setErrorMessage('L\'article n\'a pas pu être modifié.');
                     }
 
                     $post = $this->blogModel->getPostById($_GET['id']);
@@ -185,21 +180,21 @@ class AdminBlogController extends Controller
                 } else {
 
                     if ($this->blogModel->setPost($data)) {
-                        $message['success'] = 'L\'article a bien été ajouté !';
+                        $this->setSuccessMessage('L\'article a bien été ajouté !');
                     } else {
-                        $message['error'] = 'L\'article n\'a pas pu être ajouté.';
+                        $this->setErrorMessage('L\'article n\'a pas pu être ajouté.');
                     }
                 }
 
             } else {
-                $message['error'] = 'Des champs obligatoires n\'ont pas été rempli';
+                $this->setErrorMessage('Des champs obligatoires n\'ont pas été remplis');
             }
         }
 
 
         echo $this->twig->render('admin/blog/edit.html.twig', [
             'post'      => $post,
-            'message'   => $message
+            'message'   => $this->message
         ]);
 
     }
