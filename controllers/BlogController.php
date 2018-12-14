@@ -60,8 +60,63 @@ class BlogController extends Controller
             if ($post['active'] || $this->isAdmin()) {
                 $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);
 
+                // if user or admin is logged
+                if ($this->isLogged()) {
+
+                    if ($_REQUEST['message'] == 'success') {
+
+                        $this->setSuccessMessage("Le commentaire a bien été ajouté");
+
+                    } elseif ($_REQUEST['message'] == 'error') {
+
+                        $this->setErrorMessage("Le commentaire n'a pas pu être ajouté");
+                    }
+
+                    /*
+                     * if the user or the admin submit a comment and if fields are not empty,
+                     * add the comment and show the comments list.
+                     *
+                     * Else, show all comments
+                     */
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                        if (empty($_POST['content']) || empty($_POST['id_user'])) {
+
+                            $this->setErrorMessage("Tous les champs n'ont pas été remplis");
+
+                        } else {
+
+                            $user = $this->model->getById('users', $_POST['id_user']);
+                            $content = htmlspecialchars($_POST['content']);
+
+                            $data = [
+                                'id_user'   => $user['id'],
+                                'id_post'   => $post['id'],
+                                'content'   => $content
+                            ];
+
+                            unset($_POST['content']);
+
+                            if ($this->commentsModel->setComment($data)) {
+                                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'&message=success');
+                                exit;
+                            } else {
+                                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'&message=error');
+                                exit;
+                            }
+                        }
+                    }
+
+                    $comments = $this->commentsModel->getVerifiedCommentsByPostId($post['id']);
+
+                } else {
+                    $comments = null;
+                }
+
                 echo $this->twig->render('front/blog/post.html.twig', [
-                    'post' => $post,
+                    'post'      => $post,
+                    'comments'  => $comments,
+                    'message'   => $this->message
                 ]);
 
             } else {

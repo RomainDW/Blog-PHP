@@ -37,4 +37,18 @@ class Model
         $req->bindParam(':id', $id, \PDO::PARAM_INT);
         return $req->execute();
     }
+
+    /**
+     * @param $table
+     * @param $id
+     * @return mixed
+     *
+     * get all data based on the selected table and id
+     */
+    public function getById ($table, $id) {
+        $req = $this->db->prepare('SELECT * FROM ' . $table . ' WHERE id = :id LIMIT 1');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(\PDO::FETCH_ASSOC);
+    }
 }

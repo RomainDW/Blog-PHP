@@ -32,3 +32,4 @@ composer install
 * [TinyMce](https://www.tiny.cloud/)
 * [DataTables](https://datatables.net/) 
 * [jqBootstrapValidation](https://reactiveraven.github.io/jqBootstrapValidation/)
+* [PHP Flash Messages](https://mikeeverhart.net/php-flash-messages/index.php)

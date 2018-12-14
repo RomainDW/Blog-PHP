@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Comments;
 use Models\Users;
 use \Twig_Loader_Filesystem;
 use \Twig_Environment;
@@ -11,16 +12,22 @@ use Models\Blog;
 class Controller
 {
     protected $twig;
+
     protected $model;
     protected $blogModel;
     protected $usersModel;
+    protected $commentsModel;
+
     protected $message;
+    protected $msg;
 
     function __construct()
     {
         //SESSION
-        if (empty($_SESSION))
-            session_start();
+        if (!session_id()) @session_start();
+
+        // Flash messages
+        $this->msg = new \Plasticbrain\FlashMessages\FlashMessages();
 
         $className = substr(get_class($this), 12, -10);
         // Twig Configuration
@@ -37,6 +44,7 @@ class Controller
         $this->model = new Model;
         $this->blogModel = new Blog;
         $this->usersModel = new Users;
+        $this->commentsModel = new Comments;
     }
 
     // Redirect to the 404 error page
