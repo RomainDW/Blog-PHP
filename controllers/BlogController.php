@@ -56,11 +56,17 @@ class BlogController extends Controller
         // if the post exist, show the post, else, redirect to a 404 error page
         if (isset($_GET['id']) && $post = $this->blogModel->getPostById($_GET['id'])) {
 
-            $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);
+            // if the post is published
+            if ($post['active']) {
+                $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);
 
-            echo $this->twig->render('front/blog/post.html.twig', [
-                'post' => $post,
-            ]);
+                echo $this->twig->render('front/blog/post.html.twig', [
+                    'post' => $post,
+                ]);
+
+            } else {
+                $this->redirect404();
+            }
 
         } else {
             $this->redirect404();
