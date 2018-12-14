@@ -36,10 +36,10 @@ class LoginController extends Controller
 
                 // if role = 1, run admin session, else, run user session
                 if ($userExist && $userExist['role'] == 1) {
-                    $_SESSION['admin'] = $userExist['name'];
+                    $_SESSION['admin'] = $userExist;
                     header('Location: ' . '?c=dashboard');
                 } else {
-                    $_SESSION['user'] = $userExist['name'];
+                    $_SESSION['user'] = $userExist;
                     header('Location: ' . '?c=blog');
                 }
             }
