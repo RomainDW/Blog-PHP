@@ -46,7 +46,7 @@
                     {% if session.user != null or session.admin != null %}
                         <hr>
 
-                        {% include 'components/notifications.html.twig' %}
+                        {{ message.display }}
 
                         <!-- Comment Form -->
                         <div class="card my-4">
