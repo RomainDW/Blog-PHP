@@ -25,12 +25,12 @@ class LoginController extends Controller
             // check if email & password are empty
             if (empty($email) || empty($password)) {
 
-                $this->setErrorMessage("Tous les champs n'ont pas été remplis");
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true));
 
             // check if the user exist
             } elseif ( !$userExist) {
 
-                $this->setErrorMessage("Identifiant ou mot de passe incorrect !");
+                $this->msg->error("Identifiant ou mot de passe incorrect !", $this->getUrl(true));
 
             } else {
 
@@ -47,7 +47,7 @@ class LoginController extends Controller
         }
 
         echo $this->twig->render('front/login/index.html.twig', [
-            'message'   => $this->message
+            'message'   => $this->msg
         ]);
     }
 
@@ -67,16 +67,16 @@ class LoginController extends Controller
             // check if fields are empty
             if (empty($email) || empty($name) || empty($password) || empty($passwordCheck)) {
 
-                $this->setErrorMessage("Tous les champs n'ont pas été remplis");
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true));
 
             // check if passwords match
             } elseif ($password != $passwordCheck) {
 
-                $this->setErrorMessage("Les mots de passe ne correspondent pas");
+                $this->msg->error("Les mots de passe ne correspondent pas", $this->getUrl(true));
 
             // check if user exist
             } elseif ($userExist) {
-                $this->setErrorMessage("Cet utilisateur existe déjà");
+                $this->msg->error("Cet utilisateur existe déjà", $this->getUrl(true));
             } else {
 
                 $data = [
@@ -89,16 +89,16 @@ class LoginController extends Controller
                 // create the user then redirect to "my account"
                 if ($this->usersModel->setUser($data)) {
                     //TODO: redirect to "my account"
-                    $this->setSuccessMessage("Compte créé");
+                    $this->msg->success("Compte créé", $this->getUrl(true));
                 } else {
-                    $this->setErrorMessage("Une erreur s'est produite");
+                    $this->msg->error("Une erreur s'est produite", $this->getUrl(true));
                 }
 
             }
         }
 
         echo $this->twig->render('front/login/registration.html.twig', [
-            'message'   => $this->message
+            'message'   => $this->msg
         ]);
     }
 

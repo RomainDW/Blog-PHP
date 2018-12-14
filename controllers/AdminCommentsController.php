@@ -23,11 +23,11 @@ class AdminCommentsController extends Controller
 
             $this->commentsModel->setVerified($comment['id']);
 
-            $this->msg->success('Le commentaire a été vérifié !', $_SERVER['PHP_SELF'].'?c=adminComments');
+            $this->msg->success('Le commentaire a été vérifié !', $this->getUrl(false, 'adminComments'));
 
         } else {
 
-            $this->msg->error('Le commentaire n\'a pas pu été vérifié.', $_SERVER['PHP_SELF'].'?c=adminComments');
+            $this->msg->error('Le commentaire n\'a pas pu été vérifié.', $this->getUrl(false, 'adminComments'));
         }
     }
 
@@ -36,11 +36,11 @@ class AdminCommentsController extends Controller
 
             $this->commentsModel->delete('comments', $comment['id']);
 
-            $this->msg->success('Le commentaire a été supprimé !', $_SERVER['PHP_SELF'].'?c=adminComments');
+            $this->msg->success('Le commentaire a été supprimé !', $this->getUrl(false, 'adminComments'));
 
         } else {
 
-            $this->msg->error('Le commentaire n\'a pas pu été supprimé.', $_SERVER['PHP_SELF'].'?c=adminComments');
+            $this->msg->error('Le commentaire n\'a pas pu été supprimé.', $this->getUrl(false, 'adminComments'));
         }
     }
 }

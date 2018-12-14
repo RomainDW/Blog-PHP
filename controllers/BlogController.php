@@ -63,15 +63,6 @@ class BlogController extends Controller
                 // if user or admin is logged
                 if ($this->isLogged()) {
 
-                    if ($_REQUEST['message'] == 'success') {
-
-                        $this->setSuccessMessage("Le commentaire a bien été ajouté");
-
-                    } elseif ($_REQUEST['message'] == 'error') {
-
-                        $this->setErrorMessage("Le commentaire n'a pas pu être ajouté");
-                    }
-
                     /*
                      * if the user or the admin submit a comment and if fields are not empty,
                      * add the comment and show the comments list.
@@ -82,7 +73,7 @@ class BlogController extends Controller
 
                         if (empty($_POST['content']) || empty($_POST['id_user'])) {
 
-                            $this->setErrorMessage("Tous les champs n'ont pas été remplis");
+                            $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true).'#comments-notification');
 
                         } else {
 
@@ -95,14 +86,10 @@ class BlogController extends Controller
                                 'content'   => $content
                             ];
 
-                            unset($_POST['content']);
-
                             if ($this->commentsModel->setComment($data)) {
-                                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'&message=success');
-                                exit;
+                                $this->msg->warning("Commentaire en attente de validation", $this->getUrl(true).'#comments-notification');
                             } else {
-                                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'].'&message=error');
-                                exit;
+                                $this->msg->error("Le commentaire n'a pas pu être ajouté", $this->getUrl(true).'#comments-notification');
                             }
                         }
                     }
@@ -116,7 +103,7 @@ class BlogController extends Controller
                 echo $this->twig->render('front/blog/post.html.twig', [
                     'post'      => $post,
                     'comments'  => $comments,
-                    'message'   => $this->message
+                    'message'   => $this->msg
                 ]);
 
             } else {

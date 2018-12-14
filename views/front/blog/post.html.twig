@@ -46,7 +46,9 @@
                     {% if session.user != null or session.admin != null %}
                         <hr>
 
-                        {{ message.display }}
+                        <div id="comments-notification">
+                            {{ message.display }}
+                        </div>
 
                         <!-- Comment Form -->
                         <div class="card my-4">

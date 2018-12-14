@@ -18,7 +18,6 @@ class Controller
     protected $usersModel;
     protected $commentsModel;
 
-    protected $message;
     protected $msg;
 
     function __construct()
@@ -100,11 +99,26 @@ class Controller
         }
     }
 
-    protected function setSuccessMessage ($message) {
-        $this->message['success'] = $message;
-    }
+    protected function getUrl(bool $current, string $controller = null, string $action = null) {
 
-    protected function setErrorMessage ($message) {
-        $this->message['error'] = $message;
+        if ($current == true) {
+
+            return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        } else {
+
+            if ($controller == null) {
+
+                return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+            } elseif ($action == null ) {
+
+                return "http://$_SERVER[HTTP_HOST]?c=$controller";
+
+            } else {
+
+                return "http://$_SERVER[HTTP_HOST]?c=$controller&t=$action";
+            }
+        }
     }
 }

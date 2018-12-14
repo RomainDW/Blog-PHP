@@ -8,7 +8,7 @@ class AdminBlogController extends Controller
     /*
      * List of blog post
      */
-    public function index($success, $error) {
+    public function index() {
 
         // if the user is not an admin, redirect to the login page
         if (!$this->isAdmin())
@@ -17,15 +17,10 @@ class AdminBlogController extends Controller
         // get all posts
         $posts = $this->model->getAll('posts');
 
-        $message = [
-            'success'   => $success,
-            'error'     => $error
-        ];
-
         // render the list of blog posts
         echo $this->twig->render('admin/blog/list.html.twig', [
             'posts'     => $posts,
-            'message'   => $message,
+            'message'   => $this->msg,
         ]);
 
     }
@@ -52,14 +47,13 @@ class AdminBlogController extends Controller
                 $this->removeImage($image, $path);
 
                 if ($this->model->delete('posts', $post['id'])) {
-                    $this->index("L'article a bien été supprimé", null);
+                    $this->msg->success("L'article a bien été supprimé", $this->getUrl(false, 'adminBlog'));
                 } else {
-                    $this->index(null, "L'article n'a pas pu être supprimé");
+                    $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl(false, 'adminBlog'));
                 }
             } else {
                 //redirect to the list of blog posts
-                header('Location: ?c=adminBlog');
-                exit;
+                $this->msg->error("L'article n'existe pas", $this->getUrl(false, 'adminBlog'));
             }
         } else {
             //redirect to the list of blog posts
@@ -85,8 +79,10 @@ class AdminBlogController extends Controller
         if (isset($_GET['id']) && $this->blogModel->getPostById($_GET['id']) != null) {
             $post = $this->blogModel->getPostById($_GET['id']);
             $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
+//            $redirectUrl = $this->getUrl(false, 'adminBlog', 'edit');
         } else {
             $post = null;
+//            $redirectUrl = $this->getUrl(true);
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -124,7 +120,8 @@ class AdminBlogController extends Controller
                             $image = basename($_FILES['image']['name']);
 
                         } else {
-                            $this->setErrorMessage('Le format de l\'image n\'est pas supporté');
+
+                            $this->msg->error('Le format de l\'image n\'est pas supporté', $this->getUrl(true));
 
                             if ($post != null) {
                                 $image = $post['image'];
@@ -134,7 +131,7 @@ class AdminBlogController extends Controller
 
                         }
                     } else {
-                        $this->setErrorMessage('L\'image est trop lourde');
+                        $this->msg->error('L\'image est trop lourde', $this->getUrl(true));
 
                         if ($post != null) {
                             $image = $post['image'];
@@ -168,9 +165,9 @@ class AdminBlogController extends Controller
                     $postId = $_GET['id'];
 
                     if ($this->blogModel->updatePost($data, $postId)) {
-                        $this->setSuccessMessage('L\'article a bien été modifié !');
+                        $this->msg->success('L\'article a bien été modifié !', $this->getUrl(true));
                     } else {
-                        $this->setErrorMessage('L\'article n\'a pas pu être modifié.');
+                        $this->msg->error('L\'article n\'a pas pu être modifié.', $this->getUrl(true));
                     }
 
                     $post = $this->blogModel->getPostById($_GET['id']);
@@ -180,21 +177,21 @@ class AdminBlogController extends Controller
                 } else {
 
                     if ($this->blogModel->setPost($data)) {
-                        $this->setSuccessMessage('L\'article a bien été ajouté !');
+                        $this->msg->success('L\'article a bien été ajouté !', $this->getUrl(true));
                     } else {
-                        $this->setErrorMessage('L\'article n\'a pas pu être ajouté.');
+                        $this->msg->error('L\'article n\'a pas pu être ajouté.', $this->getUrl(true));
                     }
                 }
 
             } else {
-                $this->setErrorMessage('Des champs obligatoires n\'ont pas été remplis');
+                $this->msg->error('Des champs obligatoires n\'ont pas été remplis', $this->getUrl(true));
             }
         }
 
 
         echo $this->twig->render('admin/blog/edit.html.twig', [
             'post'      => $post,
-            'message'   => $this->message
+            'message'   => $this->msg,
         ]);
 
     }
