@@ -56,8 +56,8 @@ class BlogController extends Controller
         // if the post exist, show the post, else, redirect to a 404 error page
         if (isset($_GET['id']) && $post = $this->blogModel->getPostById($_GET['id'])) {
 
-            // if the post is published
-            if ($post['active']) {
+            // if the post is published or if the user is logged as admin, show the post, else, redirect to a 404 error page
+            if ($post['active'] || $this->isAdmin()) {
                 $post['content'] = htmlspecialchars_decode($post['content'], ENT_HTML5);
 
                 echo $this->twig->render('front/blog/post.html.twig', [
