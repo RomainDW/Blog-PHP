@@ -37,4 +37,21 @@ class Comments extends Model
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @return array
+     *
+     * Get all unverified comments
+     */
+    public function getUnverifiedComments() {
+        $req = $this->db->prepare('SELECT c.verified, c.id, c.content, u.name, p.title FROM comments c INNER JOIN users u on c.id_user = u.id INNER JOIN posts p on c.id_post = p.id WHERE c.verified = 0');
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function setVerified($id) {
+        $req = $this->db->prepare('UPDATE comments SET verified = 1 WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        return $req->execute();
+    }
 }
