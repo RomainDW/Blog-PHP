@@ -8,6 +8,12 @@ class AdminCommentsController extends Controller
 {
     public function index () {
 
+        // if the user is not an admin, redirect to the login page
+        if (!$this->isAdmin()) {
+            header('Location: ?c=login');
+            exit;
+        }
+
         $comments = $this->commentsModel->getUnverifiedComments();
 
         echo $this->twig->render("admin/comments.html.twig", [
@@ -18,6 +24,13 @@ class AdminCommentsController extends Controller
 
 
     public function verified () {
+
+        // if the user is not an admin, redirect to the login page
+        if (!$this->isAdmin()) {
+            header('Location: ?c=login');
+            exit;
+        }
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
 
@@ -32,6 +45,13 @@ class AdminCommentsController extends Controller
     }
 
     public function delete () {
+
+        // if the user is not an admin, redirect to the login page
+        if (!$this->isAdmin()) {
+            header('Location: ?c=login');
+            exit;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
 
             $this->commentsModel->delete('comments', $comment['id']);
