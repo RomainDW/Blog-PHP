@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\Comments;
 use Models\Users;
 use \Twig_Loader_Filesystem;
 use \Twig_Environment;
@@ -11,9 +12,12 @@ use Models\Blog;
 class Controller
 {
     protected $twig;
+
     protected $model;
     protected $blogModel;
     protected $usersModel;
+    protected $commentsModel;
+
     protected $message;
 
     function __construct()
@@ -37,6 +41,7 @@ class Controller
         $this->model = new Model;
         $this->blogModel = new Blog;
         $this->usersModel = new Users;
+        $this->commentsModel = new Comments;
     }
 
     // Redirect to the 404 error page
