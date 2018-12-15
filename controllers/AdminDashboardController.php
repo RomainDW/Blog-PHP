@@ -29,6 +29,9 @@ class AdminDashboardController extends Controller
      */
     public function editConfig() {
 
+        if (!$this->isAdmin())
+            header('Location: ?c=login');
+
         // if it's a post method & edit_config is submitted & ppp value is not empty, then update the config, else, redirect to a 404 error page
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['edit_config']) && !empty($_POST['ppp'])) {
 
