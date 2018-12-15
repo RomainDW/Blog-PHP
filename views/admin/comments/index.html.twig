@@ -7,45 +7,51 @@
 {% endblock %}
 
 {% block main %}
-    <div class="d-sm-flex justify-content-between align-items-center mb-5">
-        <h4 class="header-title mb-0">Liste des commentaires non vérifiés</h4>
-    </div>
-    <div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
 
-        <!-- Notifications -->
-        {{ message.display }}
-        <!-- Table comments -->
-        <table id="list-posts" class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Article</th>
-                <th>Utilisateur</th>
-                <th>Commentaire</th>
-                <th>Action</th>
-            </tr>
-            </thead>
+                <div class="d-sm-flex justify-content-between align-items-center mb-5">
+                    <h4 class="header-title mb-0">Liste des commentaires non vérifiés</h4>
+                </div>
 
-            <tbody>
-            {% for comment in comments %}
-                <tr>
-                    <td>{{ comment.title }}</td>
-                    <td>{{ comment.name }}</td>
-                    <td>{{ comment.content }}</td>
-                    <td>
-                        <form method="post" action="?c=adminComments&t=verified" class="delete-form">
-                            <input type="hidden" name="commentId" value="{{ comment.id }}">
-                            <button type="submit" class="btn btn-success" onclick="return confirm('Confirmer la vérification ?');" title="Vérifier"><i class="fa fa-check-circle"></i></button>
-                        </form>
-                        <form method="post" action="?c=adminComments&t=delete" class="delete-form">
-                            <input type="hidden" name="commentId" value="{{ comment.id }}">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Confirmer la suppression ?');" title="Supprimer"><i class="fa fa-trash-o"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                <div>
+                    <!-- Notifications -->
+                    {{ message.display }}
+                    <!-- Table comments -->
+                    <table id="list-posts" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Utilisateur</th>
+                            <th>Commentaire</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
 
+                        <tbody>
+                        {% for comment in comments %}
+                            <tr>
+                                <td>{{ comment.title }}</td>
+                                <td>{{ comment.name }}</td>
+                                <td>{{ comment.content }}</td>
+                                <td>
+                                    <form method="post" action="?c=adminComments&t=verified" class="delete-form">
+                                        <input type="hidden" name="commentId" value="{{ comment.id }}">
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('Confirmer la vérification ?');" title="Vérifier"><i class="fa fa-check-circle"></i></button>
+                                    </form>
+                                    <form method="post" action="?c=adminComments&t=delete" class="delete-form">
+                                        <input type="hidden" name="commentId" value="{{ comment.id }}">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Confirmer la suppression ?');" title="Supprimer"><i class="fa fa-trash-o"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

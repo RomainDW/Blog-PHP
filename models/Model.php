@@ -51,4 +51,27 @@ class Model
         $req->execute();
         return $req->fetch(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @return mixed
+     *
+     * Get the config
+     */
+    public function getConfig() {
+        $req = $this->db->prepare('SELECT ppp FROM config WHERE id = 1');
+        $req->execute();
+        return $req->fetchColumn();
+    }
+
+    /**
+     * @param int $ppp
+     * @return bool
+     *
+     * Update the config
+     */
+    public function updateConfig(int $ppp) {
+        $req = $this->db->prepare("UPDATE config SET ppp = :ppp WHERE id = 1");
+        $req->bindValue(':ppp', $ppp, \PDO::PARAM_INT);
+        return $req->execute();
+    }
 }

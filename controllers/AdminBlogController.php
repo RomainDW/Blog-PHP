@@ -15,7 +15,7 @@ class AdminBlogController extends Controller
             header('Location: ?c=login');
 
         // get all posts
-        $posts = $this->model->getAll('posts');
+        $posts = $this->blogModel->getAllPostsWithUsers();
 
         // render the list of blog posts
         echo $this->twig->render('admin/blog/list/index.html.twig', [
@@ -175,6 +175,8 @@ class AdminBlogController extends Controller
                     $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
 
                 } else {
+
+                    $data['id_user'] =  $_POST['id_user'];
 
                     if ($this->blogModel->setPost($data)) {
                         $this->msg->success('L\'article a bien été ajouté !', $this->getUrl(true));
