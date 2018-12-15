@@ -23,6 +23,7 @@
             <tr>
                 <th>Titre</th>
                 <th>Date</th>
+                <th>Auteur</th>
                 <th>Publié</th>
                 <th>Actions</th>
             </tr>
@@ -33,6 +34,7 @@
                 <tr>
                     <td>{{ post.title }}</td>
                     <td>{{ post.date_add|date("d/m/Y") }}</td>
+                    <td>{{ post.author }}</td>
                     <td>
                         {% if post.active == 1 %}
                             <i class="fa fa-check-circle active-yes"></i>

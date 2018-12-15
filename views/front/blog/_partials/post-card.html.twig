@@ -17,9 +17,10 @@
         </div>
         <div class="card-footer text-muted">
             {% if post.date_update != null %}
-                Modifié le {{ post.date_update|date("d / m / Y") }}
+                <p>Par <strong class="text-primary">{{ post.author }}</strong>.</p>
+                <p>Modifié le <strong>{{ post.date_update|date("d/m/Y") }}</strong></p>
             {% else %}
-                Posté le {{ post.date_add|date("d / m / Y") }}
+                <p>Posté le <strong>{{ post.date_add|date("d/m/Y") }}</strong> par <strong class="text-primary">{{ post.author }}</strong></p>
             {% endif %}
         </div>
     </div>

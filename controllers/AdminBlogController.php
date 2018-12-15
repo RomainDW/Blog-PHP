@@ -15,7 +15,7 @@ class AdminBlogController extends Controller
             header('Location: ?c=login');
 
         // get all posts
-        $posts = $this->model->getAll('posts');
+        $posts = $this->blogModel->getAllPostsWithUsers();
 
         // render the list of blog posts
         echo $this->twig->render('admin/blog/list/index.html.twig', [

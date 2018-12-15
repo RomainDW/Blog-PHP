@@ -34,7 +34,10 @@ class Blog extends Model
      * Retrieve data from a blog post based on its ID
      */
     public function getPostById($id) {
-        $req = $this->db->prepare('SELECT * from posts WHERE id = ' . $id);
+        $req = $this->db->prepare('
+                          SELECT p.id, p.title, p.subtitle, p.content, p.image, p.active, p.date_add, p.date_update, u.name as author 
+                          FROM posts p INNER JOIN users u on p.id_user = u.id 
+                          WHERE p.id = ' . $id);
         $req->execute();
         return $req->fetch(\PDO::FETCH_ASSOC);
     }
@@ -77,7 +80,18 @@ class Blog extends Model
      * Get blog posts based on pagination
      */
     public function getPostsPagination($this_page_first_result, $results_per_page) {
-        $req = $this->db->prepare('SELECT * FROM posts LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
+        $req = $this->db->prepare('
+                          SELECT p.id, p.title, p.subtitle, p.content, p.image, p.active, p.date_add, p.date_update, u.name as author 
+                          FROM posts p INNER JOIN users u on p.id_user = u.id 
+                          LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getAllPostsWithUsers() {
+        $req = $this->db->prepare('
+                          SELECT p.id, p.title, p.subtitle, p.content, p.image, p.active, p.date_add, p.date_update, u.name as author 
+                          FROM posts p INNER JOIN users u on p.id_user = u.id');
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
