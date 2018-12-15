@@ -11,3 +11,11 @@
     }
   }
 }
+
+.single-comment {
+  max-width: 100%;
+  min-width: 50%;
+  @media screen and (min-width : 481px) {
+    width: fit-content;
+  }
+}
