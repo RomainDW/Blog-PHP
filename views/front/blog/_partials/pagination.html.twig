@@ -1,0 +1,17 @@
+<div class="col-md-12">
+    <ul class="pagination justify-content-center mb-4">
+        <li class="page-item {% if _get.page == null or _get.page == 1 %}disabled{% endif %}">
+            <a class="page-link" href="?c=blog&page={{ _get.page - 1 }}">Previous</a>
+        </li>
+
+        {% for i in 1..numberOfPages %}
+            <li class="page-item {% if _get.page == i %}active{% endif %}">
+                <a class="page-link" href="?c=blog&page={{ i }}">{{ i }}</a>
+            </li>
+        {% endfor %}
+
+        <li class="page-item {% if _get.page == numberOfPages %}disabled{% endif %}">
+            <a class="page-link" href="?c=blog&page={% if _get.page == null %}2{% else %}{{ _get.page + 1 }}{% endif %}">Next</a>
+        </li>
+    </ul>
+</div>

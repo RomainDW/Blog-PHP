@@ -1,0 +1,45 @@
+{% extends "front/base.html.twig" %}
+
+{# Main content #}
+{% block main %}
+    <!-- Page Content -->
+    <main id="blog-page">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h1 class="my-4">Découvrez
+                        <small>les derniers articles</small>
+                    </h1>
+                </div>
+
+                {% if posts != null %}
+
+                    {% for post in posts %}
+                        {% if post.active %}
+                            <!-- Blog Entries Column -->
+                            {% include 'front/blog/_partials/post-card.html.twig' %}
+                        {% endif %}
+                    {% endfor %}
+
+
+                    <!-- Pagination -->
+                    {% if numberOfPages > 1 %}
+                        {% include 'front/blog/_partials/pagination.html.twig' %}
+                    {% endif %}
+
+                {% else %}
+                    <div class="col-md-12">
+                        <!-- No blog posts -->
+                        <h2>Aucun article n'a été posté pour le moment</h2>
+                    </div>
+                {% endif %}
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+    </main>
+{% endblock %}

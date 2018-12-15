@@ -1,0 +1,53 @@
+{% extends "front/base.html.twig" %}
+
+{# Main content #}
+{% block main %}
+
+    <!-- Page Content -->
+    <main id="blog-page">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Post Content Column -->
+                <div class="col-lg-12">
+
+                    <!-- Title -->
+                    <h1 class="mt-4">{{ post.title }}</h1>
+
+                    <!-- Author -->
+                    <p class="lead">
+                        par
+                        <a href="#">TODO : post.author</a>
+                    </p>
+
+                    <hr>
+
+                    <!-- Date/Time -->
+                    <p>{% if post.date_update != null %}Modifié le {{ post.date_update|date("d/m/Y") }}{% else %}Posté le {{ post.date_add|date("d/m/Y") }}{% endif %}</p>
+
+                    <hr>
+
+                    <!-- Image -->
+                    {% if post.image %}
+                        <img class="img-fluid rounded" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
+
+                        <hr>
+                    {% endif %}
+
+                    <!-- Post Content -->
+                    {{ post.content|raw }}
+
+                    <!-- Comments -->
+                    {% include 'front/post/_partials/comments.html.twig' %}
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+    </main>
+
+{% endblock %}

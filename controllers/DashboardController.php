@@ -13,7 +13,7 @@ class DashboardController extends Controller
         if (!$this->isAdmin())
             header('Location: ?c=login');
 
-        echo $this->twig->render('admin/dashboard/dashboard.html.twig');
+        echo $this->twig->render('admin/dashboard/index.html.twig');
 
     }
 }

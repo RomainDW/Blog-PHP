@@ -42,7 +42,7 @@ class BlogController extends Controller
         $posts = $this->blogModel->getPostsPagination($this_page_first_result, $results_per_page);
 
 
-        echo $this->twig->render('front/blog/blog.html.twig', [
+        echo $this->twig->render('front/blog/index.html.twig', [
             'posts' => $posts,
             'numberOfPages' => $number_of_pages,
         ]);
@@ -63,6 +63,8 @@ class BlogController extends Controller
                 // if user or admin is logged
                 if ($this->isLogged()) {
 
+                    $maxLength = 500;
+
                     /*
                      * if the user or the admin submit a comment and if fields are not empty,
                      * add the comment and show the comments list.
@@ -73,7 +75,11 @@ class BlogController extends Controller
 
                         if (empty($_POST['content']) || empty($_POST['id_user'])) {
 
-                            $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true).'#comments-notification');
+                            $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true) . '#comments-notification');
+
+                        } elseif (strlen($_POST['content']) > $maxLength) {
+
+                            $this->msg->error("Le commentaire fait plus de $maxLength caractères", $this->getUrl(true) . '#comments-notification');
 
                         } else {
 
@@ -100,7 +106,7 @@ class BlogController extends Controller
                     $comments = null;
                 }
 
-                echo $this->twig->render('front/blog/post.html.twig', [
+                echo $this->twig->render('front/post/index.html.twig', [
                     'post'      => $post,
                     'comments'  => $comments,
                     'message'   => $this->msg

@@ -18,7 +18,7 @@ class AdminBlogController extends Controller
         $posts = $this->model->getAll('posts');
 
         // render the list of blog posts
-        echo $this->twig->render('admin/blog/list.html.twig', [
+        echo $this->twig->render('admin/blog/list/index.html.twig', [
             'posts'     => $posts,
             'message'   => $this->msg,
         ]);
@@ -189,7 +189,7 @@ class AdminBlogController extends Controller
         }
 
 
-        echo $this->twig->render('admin/blog/edit.html.twig', [
+        echo $this->twig->render('admin/blog/edit/index.html.twig', [
             'post'      => $post,
             'message'   => $this->msg,
         ]);

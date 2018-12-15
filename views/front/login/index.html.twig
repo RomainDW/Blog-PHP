@@ -1,8 +1,14 @@
-{% extends "base-front.html.twig" %}
+{% extends "front/base.html.twig" %}
 
 {# Custom stylesheet #}
 {% block stylesheet %}
-    <link rel="stylesheet" href="assets/css/login.css">
+    <style>
+        html,
+        body,
+        main {
+            height: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block nav %}{% endblock %}

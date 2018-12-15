@@ -1,0 +1,26 @@
+<div class="col-md-6">
+
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+        {% if post.image %}
+            <a href="?c=blog&t=post&id={{ post.id }}">
+                <img class="card-img-top" src="assets/img/uploads/{{ post.image }}" alt="Image de l'article">
+            </a>
+        {% endif %}
+        <div class="card-body">
+            <a href="?c=blog&t=post&id={{ post.id }}">
+                <h2 class="card-title">{{ post.title }}</h2>
+            </a>
+            <p class="card-text">{{ post.subtitle }}</p>
+            <a href="?c=blog&t=post&id={{ post.id }}" class="btn btn-primary see-more">Voir plus <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="card-footer text-muted">
+            {% if post.date_update != null %}
+                Modifié le {{ post.date_update|date("d / m / Y") }}
+            {% else %}
+                Posté le {{ post.date_add|date("d / m / Y") }}
+            {% endif %}
+        </div>
+    </div>
+</div>
