@@ -176,6 +176,8 @@ class AdminBlogController extends Controller
 
                 } else {
 
+                    $data['id_user'] =  $_POST['id_user'];
+
                     if ($this->blogModel->setPost($data)) {
                         $this->msg->success('L\'article a bien été ajouté !', $this->getUrl(true));
                     } else {
