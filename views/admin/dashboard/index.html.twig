@@ -5,25 +5,31 @@
 {% endblock %}
 
 {% block main %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-sm-flex justify-content-between align-items-center mb-5">
+                    <h4 class="header-title mb-0">Configuration du blog</h4>
+                </div>
 
-    <div class="d-sm-flex justify-content-between align-items-center mb-5">
-        <h4 class="header-title mb-0">Configuration du blog</h4>
-    </div>
+                <div>
 
-    <div>
+                    <!-- Notifications -->
+                    {{ message.display }}
 
-        <!-- Notifications -->
-        {{ message.display }}
+                    <!-- Posts per page -->
+                    <form class="form-inline" method="post" action="?c=adminDashboard&t=editConfig">
+                        <div class="form-group">
+                            <label for="ppp">Nombre d'article par page</label>
+                            <input type="number" id="ppp" name ="ppp" class="form-control mx-sm-3" value="{{ config }}">
+                        </div>
+                        <input type="submit" class="btn btn-primary" name="edit_config" value="Enregistrer">
+                    </form>
 
-        <!-- Posts per page -->
-        <form class="form-inline" method="post" action="?c=adminDashboard&t=editConfig">
-            <div class="form-group">
-                <label for="ppp">Nombre d'article par page</label>
-                <input type="number" id="ppp" name ="ppp" class="form-control mx-sm-3" value="{{ config }}">
+                </div>
             </div>
-            <input type="submit" class="btn btn-primary" name="edit_config" value="Enregistrer">
-        </form>
-
-
+        </div>
     </div>
+
+
 {% endblock %}
