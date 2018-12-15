@@ -61,6 +61,9 @@ class AdminDashboardController extends Controller
         }
     }
 
+    /**
+     * Upgrade or downgrade user role
+     */
     public function updateUser() {
 
         if (!$this->isAdmin()) {
@@ -75,7 +78,7 @@ class AdminDashboardController extends Controller
             $user = $this->usersModel->getById('users', $userId);
 
             if ($this->usersModel->updateRoleUser(0, $userId)) {
-                $this->msg->success($user['name']."est passé au rang de simple utilisateur", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->success($user['name']." est passé au rang de simple utilisateur", $this->getUrl(false, 'adminDashboard'));
             } else {
                 $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
             }
@@ -87,12 +90,31 @@ class AdminDashboardController extends Controller
             $user = $this->usersModel->getById('users', $userId);
 
             if ($this->usersModel->updateRoleUser(1, $userId)) {
-                $this->msg->success($user['name']."est passé au rang d'administrateur", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->success($user['name']." est passé au rang d'administrateur", $this->getUrl(false, 'adminDashboard'));
             } else {
                 $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
             }
 
         } else {
+            $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(false, 'adminDashboard'));
+        }
+    }
+
+    public function removeUser () {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove']) && !empty($_POST['remove'])) {
+
+            $userId = $_POST['remove'];
+            $user = $this->usersModel->getById('users', $userId);
+
+            if ($this->usersModel->delete('users', $userId)) {
+                $this->msg->success("l'utilisateur ".$user['name']." a été supprimé", $this->getUrl(false, 'adminDashboard'));
+            } else {
+                $this->msg->error("l'utilisateur ".$user['name']." n'a pas pu être supprimé", $this->getUrl(false, 'adminDashboard'));
+            }
+
+        } else {
+
             $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(false, 'adminDashboard'));
         }
     }
