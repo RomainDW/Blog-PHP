@@ -1,0 +1,22 @@
+{% extends "front/base.html.twig" %}
+
+{% block header %}{{ include('front/_partials/header.html.twig') }}{% endblock %}
+
+{# Main content #}
+{% block main %}
+
+    <!-- About Section -->
+    {% include 'front/home/_partials/about.html.twig' %}
+
+    <!-- Contact Section -->
+    {% include 'front/home/_partials/contact.html.twig' %}
+
+{% endblock %}
+
+{% block js %}
+    <script src="assets/js/home.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="assets/js/vendor/jqBootstrapValidation.min.js"></script>
+    <script src="assets/js/contact_me.js"></script>
+{% endblock %}

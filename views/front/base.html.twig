@@ -26,10 +26,10 @@
 
 </head>
 <body id="page-top">
-    {% block nav %}{{ include('components/nav.html.twig') }}{% endblock %}
+    {% block nav %}{% include('front/_partials/nav.html.twig') %}{% endblock %}
     {% block header %}{% endblock %}
     {% block main %}{% endblock %}
-    {% block footer %}{{ include('components/footer.html.twig') }}{% endblock %}
+    {% block footer %}{%  include('front/_partials/footer.html.twig') %}{% endblock %}
 
     <!-- Bootstrap core JavaScript -->
     <script src="assets/js/vendor/jquery.min.js"></script>

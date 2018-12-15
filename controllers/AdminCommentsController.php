@@ -24,7 +24,7 @@ class AdminCommentsController extends Controller
         // get all comments that are unverified
         $comments = $this->commentsModel->getUnverifiedComments();
 
-        echo $this->twig->render("admin/comments.html.twig", [
+        echo $this->twig->render("admin/comments/index.html.twig", [
             'message'   => $this->msg,
             'comments'  => $comments
         ]);

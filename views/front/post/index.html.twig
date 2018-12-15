@@ -1,4 +1,4 @@
-{% extends "base-front.html.twig" %}
+{% extends "front/base.html.twig" %}
 
 {# Custom stylesheet #}
 {% block stylesheet %}
@@ -44,7 +44,7 @@
                     {{ post.content|raw }}
 
                     <!-- Comments -->
-                    {% include 'front/post/components/comments.html.twig' %}
+                    {% include 'front/post/_partials/comments.html.twig' %}
 
                 </div>
 

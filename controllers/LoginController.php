@@ -97,7 +97,7 @@ class LoginController extends Controller
             }
         }
 
-        echo $this->twig->render('front/login/registration.html.twig', [
+        echo $this->twig->render('front/registration/index.html.twig', [
             'message'   => $this->msg
         ]);
     }
