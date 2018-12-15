@@ -52,6 +52,12 @@
                     <label for="content">Contenu *</label>
                     <textarea class="form-control article-content" name="content" id="content">{% if post != null %}{{ post.content }}{%endif %}</textarea>
                 </div>
+
+                {% if post == null %}
+                    <!-- USER ID -->
+                    <input type="hidden" name="id_user" value="{{ session.admin.id }}">
+                {% endif %}
+
             </div>
 
         </form>
