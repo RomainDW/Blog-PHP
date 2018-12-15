@@ -4,7 +4,7 @@
 namespace Controllers;
 
 
-class DashboardController extends Controller
+class AdminDashboardController extends Controller
 {
     /*
      * Show the dashboard
