@@ -297,4 +297,40 @@ a {
   #contactForm .form-control:focus {
     background: none; }
 
+#login-page {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5; }
+  #login-page .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto; }
+  #login-page .form-signin .checkbox {
+    font-weight: 400; }
+  #login-page .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px; }
+  #login-page .form-signin .form-control:focus {
+    z-index: 2; }
+  #login-page .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; }
+  #login-page .form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+  #login-page .sign-in-icon {
+    font-size: 5rem;
+    color: #5C6BC0; }
+  #login-page .create-account:focus, #login-page .create-account:hover, #login-page .create-account:active {
+    color: #ffffff; }
+
 /*# sourceMappingURL=app.css.map */
