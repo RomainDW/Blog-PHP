@@ -272,6 +272,9 @@ a {
   .page-link:hover {
     color: #5C6BC0; }
 
+.border-primary {
+  border-color: #5C6BC0 !important; }
+
 /* Pages
 ================================== */
 #blog-page {
@@ -281,6 +284,13 @@ a {
       padding-top: calc(6rem + 72px); } }
   #blog-page .see-more i {
     margin-left: 0.5rem; }
+
+.single-comment {
+  max-width: 100%;
+  min-width: 50%; }
+  @media screen and (min-width: 481px) {
+    .single-comment {
+      width: fit-content; } }
 
 #contactForm .form-control {
   color: #fff !important; }
