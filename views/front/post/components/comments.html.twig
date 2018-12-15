@@ -1,0 +1,33 @@
+{% if session.user != null or session.admin != null %}
+    <hr>
+
+    <div id="comments-notification">
+        {{ message.display }}
+    </div>
+
+    <!-- Comment Form -->
+    <div class="card my-4">
+        <h5 class="card-header">Ajouter un commentaire:</h5>
+        <div class="card-body">
+            <form method="post" action="?c=blog&t=post&id={{ post.id }}">
+                <input type="hidden" name="id_user" value="{% if session.admin %}{{ session.admin.id }}{% elseif session.user %}{{ session.user.id }}{% endif %}">
+                <div class="form-group">
+                    <textarea class="form-control" name="content" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+{% if comments != null %}
+    {% for comment in comments %}
+        <!-- Single Comment -->
+        <div class="card border-primary single-comment mb-3">
+            <div class="card-header bg-primary text-white">{{ comment.name }}</div>
+            <div class="card-body">
+                <p class="card-text">{{ comment.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
