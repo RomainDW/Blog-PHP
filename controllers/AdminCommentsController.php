@@ -6,6 +6,13 @@ namespace Controllers;
 
 class AdminCommentsController extends Controller
 {
+    /**
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     *
+     * Show the comments management page
+     */
     public function index () {
 
         // if the user is not an admin, redirect to the login page
@@ -14,6 +21,7 @@ class AdminCommentsController extends Controller
             exit;
         }
 
+        // get all comments that are unverified
         $comments = $this->commentsModel->getUnverifiedComments();
 
         echo $this->twig->render("admin/comments.html.twig", [
@@ -23,6 +31,9 @@ class AdminCommentsController extends Controller
     }
 
 
+    /**
+     * Make a comment verified
+     */
     public function verified () {
 
         // if the user is not an admin, redirect to the login page
@@ -44,6 +55,9 @@ class AdminCommentsController extends Controller
         }
     }
 
+    /**
+     * Delete a comment
+     */
     public function delete () {
 
         // if the user is not an admin, redirect to the login page
