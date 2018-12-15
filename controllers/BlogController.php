@@ -42,7 +42,7 @@ class BlogController extends Controller
         $posts = $this->blogModel->getPostsPagination($this_page_first_result, $results_per_page);
 
 
-        echo $this->twig->render('front/blog/blog.html.twig', [
+        echo $this->twig->render('front/blog/index.html.twig', [
             'posts' => $posts,
             'numberOfPages' => $number_of_pages,
         ]);
@@ -100,7 +100,7 @@ class BlogController extends Controller
                     $comments = null;
                 }
 
-                echo $this->twig->render('front/blog/post.html.twig', [
+                echo $this->twig->render('front/post/index.html.twig', [
                     'post'      => $post,
                     'comments'  => $comments,
                     'message'   => $this->msg
