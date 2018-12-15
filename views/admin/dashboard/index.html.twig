@@ -67,7 +67,7 @@
                             <tr>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
-                                <td>{% if user.role == 1 %}Admin{% else %}Utilisateur{% endif %}</td>
+                                <td>{% if user.role == 1 %}<strong class="text-primary">Admin</strong>{% else %}Utilisateur{% endif %}</td>
                                 <td>
                                     <form method="post" action="?c=adminDashboard&t=updateUser" class="update-user d-inline-block">
                                         {% if user.role == 1 %}
