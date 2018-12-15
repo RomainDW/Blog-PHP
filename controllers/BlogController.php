@@ -63,6 +63,8 @@ class BlogController extends Controller
                 // if user or admin is logged
                 if ($this->isLogged()) {
 
+                    $maxLength = 500;
+
                     /*
                      * if the user or the admin submit a comment and if fields are not empty,
                      * add the comment and show the comments list.
@@ -73,7 +75,11 @@ class BlogController extends Controller
 
                         if (empty($_POST['content']) || empty($_POST['id_user'])) {
 
-                            $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true).'#comments-notification');
+                            $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true) . '#comments-notification');
+
+                        } elseif (strlen($_POST['content']) > $maxLength) {
+
+                            $this->msg->error("Le commentaire fait plus de $maxLength caractères", $this->getUrl(true) . '#comments-notification');
 
                         } else {
 
