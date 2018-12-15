@@ -3,8 +3,6 @@
 namespace Controllers;
 
 
-use Engine\Config;
-
 class BlogController extends Controller
 {
 
