@@ -14,14 +14,15 @@ class Blog extends Model
      */
     public function setPost($data) {
         $req = $this->db->prepare('
-            INSERT INTO posts (title, subtitle, content, date_add, image, active) 
-            VALUES (:title, :subtitle, :content, NOW(), :image, :active)');
+            INSERT INTO posts (title, subtitle, content, date_add, image, active, id_user) 
+            VALUES (:title, :subtitle, :content, NOW(), :image, :active, :id_user)');
 
         $req->bindValue(':title', $data['title'], \PDO::PARAM_STR);
         $req->bindValue(':subtitle', $data['subtitle'], \PDO::PARAM_STR);
         $req->bindValue(':content', $data['content'], \PDO::PARAM_LOB);
         $req->bindValue(':image', $data['image'], \PDO::PARAM_STR);
         $req->bindValue(':active', $data['active'], \PDO::PARAM_BOOL);
+        $req->bindValue(':id_user', $data['id_user'], \PDO::PARAM_INT);
 
         return $req->execute();
     }
