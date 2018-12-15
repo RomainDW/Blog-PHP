@@ -11,7 +11,7 @@ class BlogController extends Controller
     public function index() {
 
         // define how many results you want per page
-        $results_per_page = Config::PPP;
+        $results_per_page = $this->model->getConfig();
 
         // find out the number of results stored in database
         $number_of_posts = $this->blogModel->getNumberOfPosts();
