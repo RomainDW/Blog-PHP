@@ -54,4 +54,11 @@ class Users extends Model
         $req->bindValue(':role', $data['role'], \PDO::PARAM_BOOL);
         return $req->execute();
     }
+
+    public function updateRoleUser($value, $id) {
+        $req = $this->db->prepare('UPDATE users SET role = :role WHERE id = :id');
+        $req->bindValue(':role', $value, \PDO::PARAM_BOOL);
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        return $req->execute();
+    }
 }
