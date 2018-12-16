@@ -18,8 +18,8 @@ class LoginController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']);
+            $email = strip_tags(htmlspecialchars($_POST['email']));
+            $password = strip_tags(htmlspecialchars($_POST['password']));
             $userExist = $this->usersModel->getUser($email, $password);
 
             // check if email & password are empty
@@ -58,10 +58,10 @@ class LoginController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $email = htmlspecialchars($_POST['email']);
-            $name = htmlspecialchars($_POST['name']);
-            $password = htmlspecialchars($_POST['password']);
-            $passwordCheck = htmlspecialchars($_POST['passwordCheck']);
+            $email = strip_tags(htmlspecialchars($_POST['email']));
+            $name = strip_tags(htmlspecialchars($_POST['name']));
+            $password = strip_tags(htmlspecialchars($_POST['password']));
+            $passwordCheck = strip_tags(htmlspecialchars($_POST['passwordCheck']));
             $userExist = $this->usersModel->checkUserByEmail($email);
 
             // check if fields are empty

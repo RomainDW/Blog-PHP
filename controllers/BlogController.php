@@ -82,7 +82,7 @@ class BlogController extends Controller
                         } else {
 
                             $user = $this->model->getById('users', $_POST['id_user']);
-                            $content = htmlspecialchars($_POST['content']);
+                            $content = strip_tags(htmlspecialchars($_POST['content']));
 
                             $data = [
                                 'id_user'   => $user['id'],

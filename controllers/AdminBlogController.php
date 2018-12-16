@@ -152,8 +152,8 @@ class AdminBlogController extends Controller
                 $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
 
                 $data = [
-                    'title'         => $_POST['title'],
-                    'subtitle'      => $_POST['subtitle'],
+                    'title'         => strip_tags(htmlspecialchars($_POST['title'])),
+                    'subtitle'      => strip_tags(htmlspecialchars($_POST['subtitle'])),
                     'content'       => $content,
                     'image'         => $image,
                     'active'        => $_POST['active']
