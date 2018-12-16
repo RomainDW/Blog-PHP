@@ -18,16 +18,22 @@
             </form>
         </div>
     </div>
-{% endif %}
 
-{% if comments != null %}
-    {% for comment in comments %}
-        <!-- Single Comment -->
-        <div class="card border-primary single-comment mb-3">
-            <div class="card-header bg-primary text-white">{{ comment.name }}</div>
-            <div class="card-body">
-                <p class="card-text">{{ comment.content }}</p>
+    {% if comments != null %}
+        {% for comment in comments %}
+            <!-- Single Comment -->
+            <div class="card border-primary single-comment mb-3">
+                <div class="card-header bg-primary text-white">{{ comment.name }}</div>
+                <div class="card-body">
+                    <p class="card-text">{{ comment.content }}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+{% else %}
+    <div class="alert alert-danger mt-5 mb-5" role="alert">
+        Connectez-vous pour voir les commentaires.
+    </div>
+
 {% endif %}
