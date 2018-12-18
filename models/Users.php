@@ -19,7 +19,7 @@ class Users extends Model
             'password'  => sha1($password) // encode the password
         ];
 
-        $req = $this->db->prepare('SELECT * FROM users WHERE email = :email AND password = :password');
+        $req = $this->db->prepare('SELECT name, id, role FROM users WHERE email = :email AND password = :password');
         $req->bindValue(':email', $data['email'], \PDO::PARAM_STR);
         $req->bindValue(':password', $data['password'], \PDO::PARAM_STR);
         $req->execute();
