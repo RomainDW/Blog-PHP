@@ -9,7 +9,7 @@ class BlogController extends Controller
     public function index() {
 
         // define how many results you want per page
-        $results_per_page = $this->model->getConfig();
+        $results_per_page = $this->model->getConfig()['ppp'];
 
         // find out the number of results stored in database
         $number_of_posts = $this->blogModel->getNumberOfPosts();
@@ -70,7 +70,8 @@ class BlogController extends Controller
                 echo $this->twig->render('front/post/index.html.twig', [
                     'post'      => $post,
                     'comments'  => $comments,
-                    'message'   => $this->msg
+                    'message'   => $this->msg,
+                    'maxLength' => $this->model->getConfig()['characters']
                 ]);
 
             } else {

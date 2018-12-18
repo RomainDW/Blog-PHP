@@ -40,21 +40,33 @@ class AdminDashboardController extends Controller
         }
 
         // if it's a post method & edit_config is submitted & ppp value is not empty, then update the config, else, redirect to a 404 error page
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['edit_config']) && !empty($_POST['ppp'])) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['edit_config'])) {
 
-            // post per page
-            $ppp = $_POST['ppp'];
+            if (empty($_POST['ppp']) || empty($_POST['cpc'])) {
 
-            //if it works, redirect to the dashboard and show success message
-            if ($this->model->updateConfig($ppp)) {
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(false, 'adminDashboard'));
 
-                $this->msg->success("Le nombre d'article par page est maintenant limité à $ppp", $this->getUrl(false, 'adminDashboard'));
-
-            // if it doesn't works, redirect to the dashboard and show error message
             } else {
 
-                $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
+                // post per page
+                $ppp = $_POST['ppp'];
+
+                // characters per comment
+                $cpc = $_POST['cpc'];
+
+                //if it works, redirect to the dashboard and show success message
+                if ($this->model->updateConfig($ppp, $cpc)) {
+
+                    $this->msg->success("La configuration a bien été modifié", $this->getUrl(false, 'adminDashboard'));
+
+                // if it doesn't works, redirect to the dashboard and show error message
+                } else {
+
+                    $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
+                }
             }
+
+
 
         } else {
             $this->redirect404();

@@ -16,7 +16,9 @@ class CommentsController extends Controller
         // if user or admin is logged
         if ($this->isLogged()) {
 
-            $maxLength = 500;
+            $config = $this->model->getConfig();
+
+            $maxLength = $config['characters'];
 
             /*
              * if the user or the admin submit a comment and if fields are not empty, add the comment

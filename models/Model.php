@@ -58,20 +58,22 @@ class Model
      * Get the config
      */
     public function getConfig() {
-        $req = $this->db->prepare('SELECT ppp FROM config WHERE id = 1');
+        $req = $this->db->prepare('SELECT * FROM config WHERE id = 1');
         $req->execute();
-        return $req->fetchColumn();
+        return $req->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
      * @param int $ppp
+     * @param int $cpc
      * @return bool
      *
      * Update the config
      */
-    public function updateConfig(int $ppp) {
-        $req = $this->db->prepare("UPDATE config SET ppp = :ppp WHERE id = 1");
+    public function updateConfig(int $ppp, int $cpc) {
+        $req = $this->db->prepare("UPDATE config SET ppp = :ppp, characters = :cpc WHERE id = 1");
         $req->bindValue(':ppp', $ppp, \PDO::PARAM_INT);
+        $req->bindValue(':cpc', $cpc, \PDO::PARAM_INT);
         return $req->execute();
     }
 }
