@@ -38,9 +38,11 @@ class LoginController extends Controller
                 if ($userExist && $userExist['role'] == 1) {
                     $_SESSION['admin'] = $userExist;
                     header('Location: ' . '?c=adminDashboard');
+                    exit;
                 } else {
                     $_SESSION['user'] = $userExist;
                     header('Location: ' . '?c=blog');
+                    exit;
                 }
             }
 
