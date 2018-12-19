@@ -15,106 +15,25 @@
         {{ message.display }}
     </div>
 
-    <!-- START BLOG CONFIGURATION -->
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <div class="d-sm-flex justify-content-between align-items-center mb-5">
-                    <h4 class="header-title mb-0">Configuration du blog</h4>
-                </div>
 
-                <div>
-                    <form class="form-inline" method="post" action="?c=adminDashboard&t=editConfig">
+                <!-- BLOG CONFIGURATION -->
+                {% include 'admin/dashboard/_partials/config.html.twig' %}
 
-                        <!-- Posts per page -->
-                        <div class="form-group">
-                            <label for="ppp">Nombre d'article par page</label>
-                            <input type="number" id="ppp" name ="ppp" class="form-control mx-sm-3" value="{{ config.ppp }}">
-                        </div>
-
-                        <!-- Characters per comment -->
-                        <div class="form-group">
-                            <label for="ppp">Nombre max de caractère par commentaire</label>
-                            <input type="number" id="cpc" name ="cpc" class="form-control mx-sm-3" value="{{ config.characters }}">
-                        </div>
-
-                        <!-- Submit button -->
-                        <input type="submit" class="btn btn-primary" name="edit_config" value="Enregistrer">
-
-                    </form>
-
-                </div>
             </div>
         </div>
     </div>
     <!-- END BLOG CONFIGURATION -->
 
-    <!-- START USERS CONFIGURATION -->
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <div class="d-sm-flex justify-content-between align-items-center mb-5">
-                    <h4 class="header-title mb-0">Gestion des utilisateurs</h4>
-                </div>
 
-                <div>
+                <!-- USERS MANAGEMENT -->
+                {% include 'admin/dashboard/_partials/users.html.twig' %}
 
-                    <!-- Notifications -->
-                    {{ message.display }}
-
-                    <!-- List of users -->
-                    <table id="list-posts" class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        {% for user in users %}
-                            <tr>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>{% if user.role == 1 %}<strong class="text-primary">Admin</strong>{% else %}Utilisateur{% endif %}</td>
-                                <td>
-                                    <form method="post" action="?c=adminDashboard&t=updateUser" class="update-user d-inline-block">
-                                        {% if user.role == 1 %}
-                                            <input type="hidden" name="userDown" value="{{ user.id }}">
-                                            <button type="submit"
-                                                    class="btn btn-secondary"
-                                                    onclick="return confirm('Descendre au rang d\'utilisateur ?');"
-                                                    title="Downgrade">
-                                                <i class="fa fa-arrow-down"></i>
-                                            </button>
-                                        {% else %}
-                                            <input type="hidden" name="userUp" value="{{ user.id }}">
-                                            <button type="submit"
-                                                    class="btn btn-primary"
-                                                    onclick="return confirm('Monter au rang d\'administrateur ?');"
-                                                    title="Upgrade">
-                                                <i class="fa fa-arrow-up"></i>
-                                            </button>
-                                        {% endif %}
-                                    </form>
-                                    <form method="post" action="?c=adminDashboard&t=removeUser" class="remove-user d-inline-block">
-                                        <input type="hidden" name="remove" value="{{ user.id }}">
-                                        <button type="submit"
-                                                class="btn btn-danger"
-                                                onclick="return confirm('Supprimer l\'utilisateur ?');"
-                                                title="Supprimer">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-
-                </div>
             </div>
         </div>
     </div>

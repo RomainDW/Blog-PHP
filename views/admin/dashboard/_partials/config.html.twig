@@ -1,0 +1,25 @@
+<div class="d-sm-flex justify-content-between align-items-center mb-5">
+    <h4 class="header-title mb-0">Configuration du blog</h4>
+</div>
+
+<div>
+    <form class="form-inline" method="post" action="?c=adminDashboard&t=editConfig">
+
+        <!-- Posts per page -->
+        <div class="form-group">
+            <label for="ppp">Nombre d'article par page</label>
+            <input type="number" id="ppp" name ="ppp" class="form-control mx-sm-3" value="{{ config.ppp }}">
+        </div>
+
+        <!-- Characters per comment -->
+        <div class="form-group">
+            <label for="ppp">Nombre max de caractère par commentaire</label>
+            <input type="number" id="cpc" name ="cpc" class="form-control mx-sm-3" value="{{ config.characters }}">
+        </div>
+
+        <!-- Submit button -->
+        <input type="submit" class="btn btn-primary" name="edit_config" value="Enregistrer">
+
+    </form>
+
+</div>
