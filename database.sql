@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2018 at 06:50 PM
+-- Generation Time: Dec 19, 2018 at 07:16 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -44,15 +44,16 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `config` (
   `id` int(11) NOT NULL,
-  `ppp` int(11) NOT NULL DEFAULT '2'
+  `ppp` int(11) NOT NULL DEFAULT '2',
+  `characters` int(11) NOT NULL DEFAULT '500'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `config`
 --
 
-INSERT INTO `config` (`id`, `ppp`) VALUES
-(1, 4);
+INSERT INTO `config` (`id`, `ppp`, `characters`) VALUES
+(1, 4, 500);
 
 -- --------------------------------------------------------
 
