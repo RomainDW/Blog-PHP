@@ -36,7 +36,7 @@ class CommentsController extends Controller
 
                 } else {
 
-                    $user = $this->model->getById('users', $_POST['id_user']);
+                    $user = $this->usersModel->getUserById($_POST['id_user']);
                     $content = $_POST['content'];
 
                     $data = [

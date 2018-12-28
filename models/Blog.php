@@ -98,4 +98,16 @@ class Blog extends Model
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @param int $id
+     * @return bool
+     *
+     * delete a post
+     */
+    public function deletePost(int $id) {
+        $req = $this->db->prepare('DELETE FROM posts WHERE id = :id LIMIT 1');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        return $req->execute();
+    }
 }

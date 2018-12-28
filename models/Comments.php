@@ -49,9 +49,40 @@ class Comments extends Model
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $id
+     * @return bool
+     *
+     * set verified to true (1)
+     */
     public function setVerified($id) {
         $req = $this->db->prepare('UPDATE comments SET verified = 1 WHERE id = :id');
         $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        return $req->execute();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     *
+     * get comment based on his id
+     */
+    public function getCommentById ($id) {
+        $req = $this->db->prepare('SELECT * FROM comments WHERE id = :id LIMIT 1');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     *
+     * delete a comment
+     */
+    public function deleteComment(int $id) {
+        $req = $this->db->prepare('DELETE FROM comments WHERE id = :id LIMIT 1');
+        $req->bindParam(':id', $id, \PDO::PARAM_INT);
         return $req->execute();
     }
 }

@@ -14,7 +14,7 @@ class AdminDashboardController extends AdminController
 
         $config = $this->model->getConfig();
 
-        $users = $this->usersModel->getAll('users');
+        $users = $this->usersModel->getAllUsers();
 
         echo $this->twig->render('admin/dashboard/index.html.twig', [
             'config'    => $config,
@@ -73,7 +73,7 @@ class AdminDashboardController extends AdminController
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['userDown']) && !empty($_POST['userDown'])) {
 
             $userId = $_POST['userDown'];
-            $user = $this->usersModel->getById('users', $userId);
+            $user = $this->usersModel->getUserById($userId);
 
             if ($this->usersModel->updateRoleUser(0, $userId)) {
                 $this->msg->success($user['name']." est passé au rang de simple utilisateur", $this->getUrl(true));
@@ -85,7 +85,7 @@ class AdminDashboardController extends AdminController
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['userUp']) && !empty($_POST['userUp'])) {
 
             $userId = $_POST['userUp'];
-            $user = $this->usersModel->getById('users', $userId);
+            $user = $this->usersModel->getUserById($userId);
 
             if ($this->usersModel->updateRoleUser(1, $userId)) {
                 $this->msg->success($user['name']." est passé au rang d'administrateur", $this->getUrl(true));
@@ -103,9 +103,9 @@ class AdminDashboardController extends AdminController
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remove']) && !empty($_POST['remove'])) {
 
             $userId = $_POST['remove'];
-            $user = $this->usersModel->getById('users', $userId);
+            $user = $this->usersModel->getUserById($userId);
 
-            if ($this->usersModel->delete('users', $userId)) {
+            if ($this->usersModel->deleteUser($userId)) {
                 $this->msg->success("l'utilisateur ".$user['name']." a été supprimé", $this->getUrl(true));
             } else {
                 $this->msg->error("l'utilisateur ".$user['name']." n'a pas pu être supprimé", $this->getUrl(true));

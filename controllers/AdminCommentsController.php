@@ -30,7 +30,7 @@ class AdminCommentsController extends AdminController
      */
     public function verified () {
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getCommentById($_POST['commentId'])) {
 
             $this->commentsModel->setVerified($comment['id']);
 
@@ -47,9 +47,9 @@ class AdminCommentsController extends AdminController
      */
     public function delete () {
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getCommentById($_POST['commentId'])) {
 
-            $this->commentsModel->delete('comments', $comment['id']);
+            $this->commentsModel->deleteComment($comment['id']);
 
             $this->msg->success('Le commentaire a été supprimé !', $this->getUrl(true));
 

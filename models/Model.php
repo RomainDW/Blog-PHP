@@ -14,45 +14,6 @@ class Model
     }
 
     /**
-     * @param $table
-     * @return array
-     *
-     * get all data from the selected table
-     */
-    public function getAll(string $table) {
-        $req = $this->db->prepare('SELECT * FROM ' .$table);
-        $req->execute();
-        return $req->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    /**
-     * @param $table
-     * @param $id
-     * @return bool
-     *
-     * delete a row from the database based on the selected table and id
-     */
-    public function delete(string $table, int $id) {
-        $req = $this->db->prepare('DELETE FROM ' . $table . ' WHERE id = :id LIMIT 1');
-        $req->bindParam(':id', $id, \PDO::PARAM_INT);
-        return $req->execute();
-    }
-
-    /**
-     * @param $table
-     * @param $id
-     * @return mixed
-     *
-     * get all data based on the selected table and id
-     */
-    public function getById (string $table, $id) {
-        $req = $this->db->prepare('SELECT * FROM ' . $table . ' WHERE id = :id LIMIT 1');
-        $req->bindParam(':id', $id, \PDO::PARAM_INT);
-        $req->execute();
-        return $req->fetch(\PDO::FETCH_ASSOC);
-    }
-
-    /**
      * @return mixed
      *
      * Get the config

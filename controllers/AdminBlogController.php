@@ -38,7 +38,7 @@ class AdminBlogController extends AdminController
                 // remove image
                 $this->removeImage($image, $path);
 
-                if ($this->model->delete('posts', $post['id'])) {
+                if ($this->blogModel->deletePost($post['id'])) {
                     $this->msg->success("L'article a bien été supprimé", $this->getUrl());
                 } else {
                     $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl());
