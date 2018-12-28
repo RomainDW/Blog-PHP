@@ -47,13 +47,13 @@ class AdminBlogController extends Controller
                 $this->removeImage($image, $path);
 
                 if ($this->model->delete('posts', $post['id'])) {
-                    $this->msg->success("L'article a bien été supprimé", $this->getUrl(false, 'adminBlog'));
+                    $this->msg->success("L'article a bien été supprimé", $this->getUrl());
                 } else {
-                    $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl(false, 'adminBlog'));
+                    $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl());
                 }
             } else {
                 //redirect to the list of blog posts
-                $this->msg->error("L'article n'existe pas", $this->getUrl(false, 'adminBlog'));
+                $this->msg->error("L'article n'existe pas", $this->getUrl());
             }
         } else {
             //redirect to the list of blog posts
@@ -79,10 +79,8 @@ class AdminBlogController extends Controller
         if (isset($_GET['id']) && $this->blogModel->getPostById($_GET['id']) != null) {
             $post = $this->blogModel->getPostById($_GET['id']);
             $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
-//            $redirectUrl = $this->getUrl(false, 'adminBlog', 'edit');
         } else {
             $post = null;
-//            $redirectUrl = $this->getUrl(true);
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -121,7 +119,7 @@ class AdminBlogController extends Controller
 
                         } else {
 
-                            $this->msg->error('Le format de l\'image n\'est pas supporté', $this->getUrl(true));
+                            $this->msg->error('Le format de l\'image n\'est pas supporté', $this->getUrl());
 
                             if ($post != null) {
                                 $image = $post['image'];
@@ -131,7 +129,7 @@ class AdminBlogController extends Controller
 
                         }
                     } else {
-                        $this->msg->error('L\'image est trop lourde', $this->getUrl(true));
+                        $this->msg->error('L\'image est trop lourde', $this->getUrl());
 
                         if ($post != null) {
                             $image = $post['image'];
@@ -165,9 +163,9 @@ class AdminBlogController extends Controller
                     $postId = $_GET['id'];
 
                     if ($this->blogModel->updatePost($data, $postId)) {
-                        $this->msg->success('L\'article a bien été modifié !', $this->getUrl(true));
+                        $this->msg->success('L\'article a bien été modifié !', $this->getUrl());
                     } else {
-                        $this->msg->error('L\'article n\'a pas pu être modifié.', $this->getUrl(true));
+                        $this->msg->error('L\'article n\'a pas pu être modifié.', $this->getUrl());
                     }
 
                     $post = $this->blogModel->getPostById($_GET['id']);
@@ -179,14 +177,14 @@ class AdminBlogController extends Controller
                     $data['id_user'] =  $_POST['id_user'];
 
                     if ($this->blogModel->setPost($data)) {
-                        $this->msg->success('L\'article a bien été ajouté !', $this->getUrl(true));
+                        $this->msg->success('L\'article a bien été ajouté !', $this->getUrl());
                     } else {
-                        $this->msg->error('L\'article n\'a pas pu être ajouté.', $this->getUrl(true));
+                        $this->msg->error('L\'article n\'a pas pu être ajouté.', $this->getUrl());
                     }
                 }
 
             } else {
-                $this->msg->error('Des champs obligatoires n\'ont pas été remplis', $this->getUrl(true));
+                $this->msg->error('Des champs obligatoires n\'ont pas été remplis', $this->getUrl());
             }
         }
 

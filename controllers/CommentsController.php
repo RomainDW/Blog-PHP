@@ -28,11 +28,11 @@ class CommentsController extends Controller
 
                 if (empty($_POST['content']) || empty($_POST['id_user']) || empty($_POST['id_post'])) {
 
-                    $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true) . '#comments-notification');
+                    $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true) .'#comments-notification');
 
                 } elseif (strlen($_POST['content']) > $maxLength) {
 
-                    $this->msg->error("Le commentaire fait plus de $maxLength caractères", $this->getUrl(true) . '#comments-notification');
+                    $this->msg->error("Le commentaire fait plus de $maxLength caractères", $this->getUrl(true) .'#comments-notification');
 
                 } else {
 
@@ -46,9 +46,9 @@ class CommentsController extends Controller
                     ];
 
                     if ($this->commentsModel->setComment($data)) {
-                        $this->msg->warning("Commentaire en attente de validation", $this->getUrl(false, 'blog', 'post').'&id='.$_POST['id_post'].'#comments-notification');
+                        $this->msg->warning("Commentaire en attente de validation", $this->getUrl(true) .'#comments-notification');
                     } else {
-                        $this->msg->error("Le commentaire n'a pas pu être ajouté", $this->getUrl(false, 'blog', 'post').'&id='.$_POST['id_post'].'#comments-notification');
+                        $this->msg->error("Le commentaire n'a pas pu être ajouté", $this->getUrl(true) .'#comments-notification');
                     }
                 }
             } else {

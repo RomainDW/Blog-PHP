@@ -25,12 +25,12 @@ class LoginController extends Controller
             // check if email & password are empty
             if (empty($email) || empty($password)) {
 
-                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true));
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl());
 
             // check if the user exist
             } elseif ( !$userExist) {
 
-                $this->msg->error("Identifiant ou mot de passe incorrect !", $this->getUrl(true));
+                $this->msg->error("Identifiant ou mot de passe incorrect !", $this->getUrl());
 
             } else {
 
@@ -69,16 +69,16 @@ class LoginController extends Controller
             // check if fields are empty
             if (empty($email) || empty($name) || empty($password) || empty($passwordCheck)) {
 
-                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true));
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl());
 
             // check if passwords match
             } elseif ($password != $passwordCheck) {
 
-                $this->msg->error("Les mots de passe ne correspondent pas", $this->getUrl(true));
+                $this->msg->error("Les mots de passe ne correspondent pas", $this->getUrl());
 
             // check if user exist
             } elseif ($userExist) {
-                $this->msg->error("Cet utilisateur existe déjà", $this->getUrl(true));
+                $this->msg->error("Cet utilisateur existe déjà", $this->getUrl());
             } else {
 
                 $data = [
@@ -91,9 +91,9 @@ class LoginController extends Controller
                 // create the user then redirect to "my account"
                 if ($this->usersModel->setUser($data)) {
                     //TODO: redirect to "my account"
-                    $this->msg->success("Compte créé", $this->getUrl(true));
+                    $this->msg->success("Compte créé", $this->getUrl());
                 } else {
-                    $this->msg->error("Une erreur s'est produite", $this->getUrl(true));
+                    $this->msg->error("Une erreur s'est produite", $this->getUrl());
                 }
 
             }

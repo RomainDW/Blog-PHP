@@ -44,7 +44,7 @@ class AdminDashboardController extends Controller
 
             if (empty($_POST['ppp']) || empty($_POST['cpc'])) {
 
-                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->error("Tous les champs n'ont pas été remplis", $this->getUrl(true));
 
             } else {
 
@@ -57,12 +57,12 @@ class AdminDashboardController extends Controller
                 //if it works, redirect to the dashboard and show success message
                 if ($this->model->updateConfig($ppp, $cpc)) {
 
-                    $this->msg->success("La configuration a bien été modifié", $this->getUrl(false, 'adminDashboard'));
+                    $this->msg->success("La configuration a bien été modifié", $this->getUrl(true));
 
                 // if it doesn't works, redirect to the dashboard and show error message
                 } else {
 
-                    $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
+                    $this->msg->error("Une erreur s'est produite", $this->getUrl(true));
                 }
             }
 
@@ -90,9 +90,9 @@ class AdminDashboardController extends Controller
             $user = $this->usersModel->getById('users', $userId);
 
             if ($this->usersModel->updateRoleUser(0, $userId)) {
-                $this->msg->success($user['name']." est passé au rang de simple utilisateur", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->success($user['name']." est passé au rang de simple utilisateur", $this->getUrl(true));
             } else {
-                $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->error("Une erreur s'est produite", $this->getUrl(true));
             }
 
         // if it's a userUp post
@@ -102,13 +102,13 @@ class AdminDashboardController extends Controller
             $user = $this->usersModel->getById('users', $userId);
 
             if ($this->usersModel->updateRoleUser(1, $userId)) {
-                $this->msg->success($user['name']." est passé au rang d'administrateur", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->success($user['name']." est passé au rang d'administrateur", $this->getUrl(true));
             } else {
-                $this->msg->error("Une erreur s'est produite", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->error("Une erreur s'est produite", $this->getUrl(true));
             }
 
         } else {
-            $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(false, 'adminDashboard'));
+            $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(true));
         }
     }
 
@@ -120,14 +120,14 @@ class AdminDashboardController extends Controller
             $user = $this->usersModel->getById('users', $userId);
 
             if ($this->usersModel->delete('users', $userId)) {
-                $this->msg->success("l'utilisateur ".$user['name']." a été supprimé", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->success("l'utilisateur ".$user['name']." a été supprimé", $this->getUrl(true));
             } else {
-                $this->msg->error("l'utilisateur ".$user['name']." n'a pas pu être supprimé", $this->getUrl(false, 'adminDashboard'));
+                $this->msg->error("l'utilisateur ".$user['name']." n'a pas pu être supprimé", $this->getUrl(true));
             }
 
         } else {
 
-            $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(false, 'adminDashboard'));
+            $this->msg->error("Erreur lors de l'envoie des données", $this->getUrl(true));
         }
     }
 }
