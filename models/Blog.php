@@ -37,7 +37,8 @@ class Blog extends Model
         $req = $this->db->prepare('
                           SELECT p.id, p.title, p.subtitle, p.content, p.image, p.active, p.date_add, p.date_update, u.name as author 
                           FROM posts p INNER JOIN users u on p.id_user = u.id 
-                          WHERE p.id = ' . $id);
+                          WHERE p.id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
         $req->execute();
         return $req->fetch(\PDO::FETCH_ASSOC);
     }
@@ -83,7 +84,9 @@ class Blog extends Model
         $req = $this->db->prepare('
                           SELECT p.id, p.title, p.subtitle, p.content, p.image, p.active, p.date_add, p.date_update, u.name as author 
                           FROM posts p INNER JOIN users u on p.id_user = u.id 
-                          LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
+                          LIMIT :first_page, :results_per_page');
+        $req->bindParam(':first_page', $this_page_first_result, \PDO::PARAM_INT);
+        $req->bindParam(':results_per_page', $results_per_page, \PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
