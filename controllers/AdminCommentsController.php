@@ -4,7 +4,7 @@
 namespace Controllers;
 
 
-class AdminCommentsController extends Controller
+class AdminCommentsController extends AdminController
 {
     /**
      * @throws \Twig_Error_Loader
@@ -14,12 +14,6 @@ class AdminCommentsController extends Controller
      * Show the comments management page
      */
     public function index () {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin()) {
-            header('Location: ?c=login');
-            exit;
-        }
 
         // get all comments that are unverified
         $comments = $this->commentsModel->getUnverifiedComments();
@@ -35,13 +29,6 @@ class AdminCommentsController extends Controller
      * Make a comment verified
      */
     public function verified () {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin()) {
-            header('Location: ?c=login');
-            exit;
-        }
-
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
 
@@ -59,12 +46,6 @@ class AdminCommentsController extends Controller
      * Delete a comment
      */
     public function delete () {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin()) {
-            header('Location: ?c=login');
-            exit;
-        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['commentId']) && $comment = $this->commentsModel->getById('comments', $_POST['commentId'])) {
 

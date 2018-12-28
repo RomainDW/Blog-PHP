@@ -3,16 +3,12 @@
 namespace Controllers;
 
 
-class AdminBlogController extends Controller
+class AdminBlogController extends AdminController
 {
     /*
      * List of blog post
      */
     public function index() {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
 
         // get all posts
         $posts = $this->blogModel->getAllPostsWithUsers();
@@ -30,10 +26,6 @@ class AdminBlogController extends Controller
      * Delete post
      */
     public function deletePost() {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
 
         // if method is "post" and if the blog post exist => remove the blog post + comment + image
         // TODO: remove comments
@@ -70,10 +62,6 @@ class AdminBlogController extends Controller
      * Else, we are adding a blog post
      */
     public function edit() {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
 
         // if we get the id, then we define $post, else, $post = null
         if (isset($_GET['id']) && $this->blogModel->getPostById($_GET['id']) != null) {
