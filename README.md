@@ -33,3 +33,8 @@ composer install
 * [DataTables](https://datatables.net/) 
 * [jqBootstrapValidation](https://reactiveraven.github.io/jqBootstrapValidation/)
 * [PHP Flash Messages](https://mikeeverhart.net/php-flash-messages/index.php)
+
+## Possible improvements
+* Rewrite rules on htaccess
+* Account management
+* Home page management
