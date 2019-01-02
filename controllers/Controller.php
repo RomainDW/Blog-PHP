@@ -28,7 +28,6 @@ class Controller
         // Flash messages
         $this->msg = new \Plasticbrain\FlashMessages\FlashMessages();
 
-        $className = substr(get_class($this), 12, -10);
         // Twig Configuration
         $loader = new Twig_Loader_Filesystem('./views/');
         $this->twig = new Twig_Environment($loader, array(
@@ -99,26 +98,12 @@ class Controller
         }
     }
 
-    protected function getUrl(bool $current, string $controller = null, string $action = null) {
+    protected function getUrl(bool $referer = false) {
 
-        if ($current == true) {
-
-            return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
+        if ($referer == true) {
+            return $_SERVER['HTTP_REFERER'];
         } else {
-
-            if ($controller == null) {
-
-                return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-            } elseif ($action == null ) {
-
-                return "http://$_SERVER[HTTP_HOST]?c=$controller";
-
-            } else {
-
-                return "http://$_SERVER[HTTP_HOST]?c=$controller&t=$action";
-            }
+            return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         }
     }
 }

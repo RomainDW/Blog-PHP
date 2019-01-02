@@ -3,16 +3,12 @@
 namespace Controllers;
 
 
-class AdminBlogController extends Controller
+class AdminBlogController extends AdminController
 {
     /*
      * List of blog post
      */
     public function index() {
-
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
 
         // get all posts
         $posts = $this->blogModel->getAllPostsWithUsers();
@@ -31,10 +27,6 @@ class AdminBlogController extends Controller
      */
     public function deletePost() {
 
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
-
         // if method is "post" and if the blog post exist => remove the blog post + comment + image
         // TODO: remove comments
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -46,14 +38,14 @@ class AdminBlogController extends Controller
                 // remove image
                 $this->removeImage($image, $path);
 
-                if ($this->model->delete('posts', $post['id'])) {
-                    $this->msg->success("L'article a bien été supprimé", $this->getUrl(false, 'adminBlog'));
+                if ($this->blogModel->deletePost($post['id'])) {
+                    $this->msg->success("L'article a bien été supprimé", $this->getUrl());
                 } else {
-                    $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl(false, 'adminBlog'));
+                    $this->msg->error("L'article n'a pas pu être supprimé", $this->getUrl());
                 }
             } else {
                 //redirect to the list of blog posts
-                $this->msg->error("L'article n'existe pas", $this->getUrl(false, 'adminBlog'));
+                $this->msg->error("L'article n'existe pas", $this->getUrl());
             }
         } else {
             //redirect to the list of blog posts
@@ -71,18 +63,12 @@ class AdminBlogController extends Controller
      */
     public function edit() {
 
-        // if the user is not an admin, redirect to the login page
-        if (!$this->isAdmin())
-            header('Location: ?c=login');
-
         // if we get the id, then we define $post, else, $post = null
         if (isset($_GET['id']) && $this->blogModel->getPostById($_GET['id']) != null) {
             $post = $this->blogModel->getPostById($_GET['id']);
             $post['content'] =  htmlspecialchars_decode($post['content'], ENT_HTML5);
-//            $redirectUrl = $this->getUrl(false, 'adminBlog', 'edit');
         } else {
             $post = null;
-//            $redirectUrl = $this->getUrl(true);
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -121,7 +107,7 @@ class AdminBlogController extends Controller
 
                         } else {
 
-                            $this->msg->error('Le format de l\'image n\'est pas supporté', $this->getUrl(true));
+                            $this->msg->error('Le format de l\'image n\'est pas supporté', $this->getUrl());
 
                             if ($post != null) {
                                 $image = $post['image'];
@@ -131,7 +117,7 @@ class AdminBlogController extends Controller
 
                         }
                     } else {
-                        $this->msg->error('L\'image est trop lourde', $this->getUrl(true));
+                        $this->msg->error('L\'image est trop lourde', $this->getUrl());
 
                         if ($post != null) {
                             $image = $post['image'];
@@ -152,8 +138,8 @@ class AdminBlogController extends Controller
                 $content =  htmlspecialchars($_POST['content'], ENT_HTML5);
 
                 $data = [
-                    'title'         => strip_tags(htmlspecialchars($_POST['title'])),
-                    'subtitle'      => strip_tags(htmlspecialchars($_POST['subtitle'])),
+                    'title'         => $_POST['title'],
+                    'subtitle'      => $_POST['subtitle'],
                     'content'       => $content,
                     'image'         => $image,
                     'active'        => $_POST['active']
@@ -165,9 +151,9 @@ class AdminBlogController extends Controller
                     $postId = $_GET['id'];
 
                     if ($this->blogModel->updatePost($data, $postId)) {
-                        $this->msg->success('L\'article a bien été modifié !', $this->getUrl(true));
+                        $this->msg->success('L\'article a bien été modifié !', $this->getUrl());
                     } else {
-                        $this->msg->error('L\'article n\'a pas pu être modifié.', $this->getUrl(true));
+                        $this->msg->error('L\'article n\'a pas pu être modifié.', $this->getUrl());
                     }
 
                     $post = $this->blogModel->getPostById($_GET['id']);
@@ -179,14 +165,14 @@ class AdminBlogController extends Controller
                     $data['id_user'] =  $_POST['id_user'];
 
                     if ($this->blogModel->setPost($data)) {
-                        $this->msg->success('L\'article a bien été ajouté !', $this->getUrl(true));
+                        $this->msg->success('L\'article a bien été ajouté !', $this->getUrl());
                     } else {
-                        $this->msg->error('L\'article n\'a pas pu être ajouté.', $this->getUrl(true));
+                        $this->msg->error('L\'article n\'a pas pu être ajouté.', $this->getUrl());
                     }
                 }
 
             } else {
-                $this->msg->error('Des champs obligatoires n\'ont pas été remplis', $this->getUrl(true));
+                $this->msg->error('Des champs obligatoires n\'ont pas été remplis', $this->getUrl());
             }
         }
 
