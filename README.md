@@ -12,6 +12,9 @@ This website was created for an OpenClassrooms PHP / Symfony Developer Training 
 * :memo: Text modification
 * :pencil2: Spellchecking
 
+##Requirement
+* PHP ≥ 7.2
+
 ## Installation
 * Clone : 
 ```bash
