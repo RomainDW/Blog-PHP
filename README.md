@@ -11,6 +11,7 @@ This website was created for an OpenClassrooms PHP / Symfony Developer Training 
 * :iphone: Responsive
 * :memo: Text modification
 * :pencil2: Spellchecking
+* :recycle: Organization
 
 ## Requirement
 * PHP ≥ 7.2
