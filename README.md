@@ -11,6 +11,7 @@ This website was created for an OpenClassrooms PHP / Symfony Developer Training 
 * :iphone: Responsive
 * :memo: Text modification
 * :pencil2: Spellchecking
+* :recycle: Organization
 
 ## Requirement
 * PHP ≥ 7.2
@@ -20,9 +21,12 @@ This website was created for an OpenClassrooms PHP / Symfony Developer Training 
 ```bash
 git clone https://github.com/RomainDW/Blog-PHP.git
 ```
-* Update composer :
+* Composer :
 ``` bash
 composer install
+```
+``` bash
+composer update
 ```
 
 * Create Database
